@@ -4,8 +4,11 @@ node_modules/
 # Build cache
 .astro/
 
-# Build output (optional, comment out if you want to commit dist/)
-# dist/
+# Build output
+dist/
+
+# Root images folder (use public/images instead)
+images/
 
 # Environment variables
 .env

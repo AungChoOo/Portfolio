@@ -29,11 +29,11 @@ const { personal, social, about, skills } = portfolioData;
             }
         }`
         @keydown.escape.window="modal = null"
-        class="min-h-screen px-4 pt-5 pb-4 md:px-6 md:pt-10 md:pb-6"
+        class="min-h-screen px-4 pt-4 pb-4 md:px-6 md:pt-8 md:pb-6 lg:pt-10"
     >
         <!-- Bento Grid -->
         <div
-            class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-auto"
+            class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 auto-rows-auto"
         >
             <!-- Row 1 -->
             <HeroCard
@@ -73,19 +73,19 @@ const { personal, social, about, skills } = portfolioData;
             <!-- About Modal -->
             <div
                 x-show="modal === 'about'"
-                class="relative bg-(--card-bg) border border-(--card-border) rounded-2xl w-full max-w-xl my-auto"
+                class="relative bg-(--card-bg) border border-(--card-border) rounded-2xl w-full max-w-sm md:max-w-xl my-auto"
             >
                 <button
                     @click="modal = null"
                     class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-(--inner-bg) border border-(--dim-border) text-(--muted) hover:text-white flex items-center justify-center text-xl leading-none transition-colors"
                     >&times;</button
                 >
-                <div class="p-8">
-                    <div class="flex items-start gap-5 mb-6">
+                <div class="p-6 md:p-8">
+                    <div class="flex items-start gap-4 md:gap-5 mb-6">
                         <img
                             src="/images/Profile.png"
                             alt={personal.name}
-                            class="w-20 h-20 rounded-xl object-cover flex-shrink-0 border"
+                            class="w-16 md:w-20 h-16 md:h-20 rounded-xl object-cover flex-shrink-0 border"
                             style="object-position: center 10%; border-color: var(--card-bg)"
                         />
                         <div>
@@ -137,20 +137,20 @@ const { personal, social, about, skills } = portfolioData;
             <!-- Skills Modal -->
             <div
                 x-show="modal === 'skills'"
-                class="relative bg-(--card-bg) border border-(--card-border) rounded-2xl w-full max-w-xl my-auto"
+                class="relative bg-(--card-bg) border border-(--card-border) rounded-2xl w-full max-w-sm md:max-w-xl my-auto"
             >
                 <button
                     @click="modal = null"
                     class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-(--inner-bg) border border-(--dim-border) text-(--muted) hover:text-white flex items-center justify-center text-xl leading-none transition-colors"
                     >&times;</button
                 >
-                <div class="p-8">
+                <div class="p-6 md:p-8">
                     <p
                         class="text-[10px] text-(--accent) font-mono uppercase tracking-widest mb-1"
                     >
                         Skills
                     </p>
-                    <h2 class="text-xl font-bold text-white mb-6">
+                    <h2 class="text-lg md:text-xl font-bold text-white mb-6">
                         Skills & Tools
                     </h2>
 
@@ -230,20 +230,20 @@ const { personal, social, about, skills } = portfolioData;
             <!-- Contact Modal -->
             <div
                 x-show="modal === 'contact'"
-                class="relative bg-(--card-bg) border border-(--card-border) rounded-2xl w-full max-w-md my-auto"
+                class="relative bg-(--card-bg) border border-(--card-border) rounded-2xl w-full max-w-sm md:max-w-md my-auto"
             >
                 <button
                     @click="modal = null"
                     class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-(--inner-bg) border border-(--dim-border) text-(--muted) hover:text-white flex items-center justify-center text-xl leading-none transition-colors"
                     >&times;</button
                 >
-                <div class="p-8">
+                <div class="p-6 md:p-8">
                     <p
                         class="text-[10px] text-(--accent) font-mono uppercase tracking-widest mb-1"
                     >
                         Contact
                     </p>
-                    <h2 class="text-xl font-bold text-white mb-6">
+                    <h2 class="text-lg md:text-xl font-bold text-white mb-6">
                         Get in Touch
                     </h2>
 
@@ -361,20 +361,20 @@ const { personal, social, about, skills } = portfolioData;
             <!-- Projects Modal -->
             <div
                 x-show="modal === 'projects'"
-                class="relative bg-(--card-bg) border border-(--card-border) rounded-2xl w-full max-w-4xl my-auto"
+                class="relative bg-(--card-bg) border border-(--card-border) rounded-2xl w-full max-w-sm md:max-w-2xl lg:max-w-4xl my-auto"
             >
                 <button
                     @click="modal = null"
                     class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-(--inner-bg) border border-(--dim-border) text-(--muted) hover:text-white flex items-center justify-center text-xl leading-none transition-colors"
                     >&times;</button
                 >
-                <div class="p-8">
+                <div class="p-6 md:p-8">
                     <p
                         class="text-[10px] text-(--accent) font-mono uppercase tracking-widest mb-1"
                     >
                         Projects
                     </p>
-                    <h2 class="text-xl font-bold text-white mb-6">
+                    <h2 class="text-lg md:text-xl font-bold text-white mb-6">
                         Featured Projects
                     </h2>
 
