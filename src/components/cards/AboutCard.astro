@@ -1,0 +1,40 @@
+---
+interface Props {
+    name: string;
+}
+const { name } = Astro.props;
+---
+
+<div
+    class="bento-card clickable col-span-1 relative overflow-hidden group"
+    style="min-height: 260px"
+    @click="modal = 'about'"
+>
+    <img
+        src="/images/Profile.png"
+        alt={name}
+        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        style="object-position: center 20%"
+    />
+    <div
+        class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"
+    >
+    </div>
+
+    <!-- Expand hint -->
+    <div
+        class="absolute top-3 right-3 z-10 w-7 h-7 rounded-full bg-black/40 border border-white/10 flex items-center justify-center"
+    >
+        <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            class="text-white/50"
+        >
+            <path d="M7 17L17 7M7 7h10v10"></path>
+        </svg>
+    </div>
+</div>

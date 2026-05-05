@@ -1,0 +1,160 @@
+{
+  "personal": {
+    "name": "Aung Cho Oo",
+    "title": "Robotics & Embedded Engineer",
+    "tagline": "Pleasure in the job puts perfection in the work.",
+    "email": "aungchooo258@gmail.com",
+    "phone": "+66640154846",
+    "resumeUrl": "https://rxresu.me/aungchooo258/aungchooo"
+  },
+  "social": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/AungChoOo",
+      "icon": "github"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/aung-cho-oo-56a6b5182/",
+      "icon": "linkedin"
+    },
+    {
+      "name": "Upwork",
+      "url": "https://www.upwork.com/freelancers/aungc3?mp_source=share",
+      "icon": "upwork"
+    },
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/aung.cho.oo.258",
+      "icon": "facebook"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/aung_cho_oo/",
+      "icon": "instagram"
+    }
+  ],
+  "about": {
+    "description": "Hello There, Aung Cho Oo is here. PCB designer, Embedded Hardware and Software Engineer, Robotic and AI Enthusiast. If you want to know more about me, you can check my resume.",
+    "profileImage": "/images/Profile.png"
+  },
+  "skills": [
+    { "name": "Embedded Programming (C, C++, Python, Verilog, VHDL)", "category": "skills" },
+    { "name": "Embedded Platform (Bare Metal, RTOS, FPGA)", "category": "skills" },
+    {
+      "name": "Embedded Hardware Design (Schematics, PCB, Simulation)",
+      "category": "skills"
+    },
+    {
+      "name": "Robotics (Simulation, Kinematics, Localization)",
+      "category": "skills"
+    },
+    {
+      "name": "Communication Protocols (I2C, SPI, UART, CAN, USB)",
+      "category": "skills"
+    },
+    {
+      "name": "Mechanical Design (3D printing, Laser Cutting, Sheet Metal)",
+      "category": "skills"
+    },
+    { "name": "KiCad", "category": "tools", "icon": "kicad" },
+    { "name": "Altium", "category": "tools", "icon": "altiumdesigner" },
+    { "name": "SolidWorks", "category": "tools", "icon": "dassaultsystemes" },
+    { "name": "Fusion 360", "category": "tools", "icon": "autodesk" },
+    { "name": "VS Code", "category": "tools", "icon": "visualstudiocode" },
+    { "name": "Arduino IDE", "category": "tools", "icon": "arduino" },
+    {
+      "name": "STM32CubeIDE",
+      "category": "tools",
+      "icon": "stmicroelectronics"
+    },
+    { "name": "ESP-IDF", "category": "tools", "icon": "espressif" },
+    { "name": "Claude Code", "category": "tools", "icon": "anthropic" },
+    { "name": "Zed", "category": "tools", "icon": "zedindustries" },
+    { "name": "Notion", "category": "tools", "icon": "notion" },
+    { "name": "GitHub", "category": "tools", "icon": "github" },
+    { "name": "ROS2", "category": "tools", "icon": "ros" }
+  ],
+  "projects": [
+    {
+      "title": "Multi-Sensor Modules",
+      "description": "Breadboard compatible 13 in 1 multi-sensor module. 6dof IMU + 3dof Magnetometer + 4 Gas sensors. Three different IC from Bosch Sensortec including BMI088, BMM150 and BME680.",
+      "image": "/images/Multi-Sensor.png",
+      "tech": ["ESP32", "Bosch Sensors", "I2C", "PCB Design"],
+      "link": "https://github.com/AungChoOo/Multi-Sensor"
+    },
+    {
+      "title": "Slamware Mobile Robot",
+      "description": "Autonomous mobile robot which can mapping the environment(indoor), localize its own position and move freely to desired location. In this project, we, the team of ROM Robotics, used ROS and Slamware technology.",
+      "image": "/images/Mobile_robot.jpg",
+      "tech": ["ROS", "Slamware", "LIDAR", "Autonomous Navigation"],
+      "link": "https://github.com/AungChoOo/slamtec-dev-team"
+    },
+    {
+      "title": "Esp32 Display Module",
+      "description": "Custom Esp32 microcontroller with ZIF connector for a display. On board battery management system including battery charger, power path and protection function.",
+      "image": "/images/Esp32.jpg",
+      "tech": ["ESP32", "Battery Management", "PCB Design", "ZIF Connector"]
+    },
+    {
+      "title": "Class D Amplifier",
+      "description": "Class D Amplifier for mono speaker. NE5332ADR is used for Preamp and TPA31T2D1PWPR for Power amp. The board is specifically made for the guitar.",
+      "image": "/images/Class_D_amp.jpg",
+      "tech": [
+        "Class D Amplifier",
+        "PCB Design",
+        "Audio Electronics",
+        "Guitar Amp"
+      ]
+    },
+    {
+      "title": "Shadow Head",
+      "description": "Robot Head that can mimic positions of human's head in 3-axis. In this project, I modified the design of James Bruton's robot eye and remove the eyes.",
+      "image": "/images/Shadow_head.jpg",
+      "tech": ["Servo Control", "3D Printing", "Arduino", "Inverse Kinematics"],
+      "link": "https://github.com/AungChoOo/Shadow_Head"
+    },
+    {
+      "title": "Cycloidal Equation Generator",
+      "description": "Application to generate the essential equation to draw Cycloidal in Solidworks. I wrote this app with pyQT.",
+      "image": "/images/Robot.png",
+      "tech": ["Python", "PyQt", "Mathematics", "SolidWorks"],
+      "link": "https://github.com/AungChoOo/Cycloidal_Equation_Generator"
+    },
+    {
+      "title": "Robot Arm",
+      "description": "Robot Arm with wireless controller. The main function of the robot arm is that it can save the positions user moved and repeat that positions anytime user wants.",
+      "image": "/images/robot_arm.jpg",
+      "tech": [
+        "Servo Control",
+        "Wireless Communication",
+        "Arduino",
+        "Position Recording"
+      ],
+      "link": "https://github.com/AungChoOo/Robot_arm_with_wireless_controller"
+    },
+    {
+      "title": "Auto Planting",
+      "description": "A machine that can perform the tasks of seeding and watering automatically.",
+      "image": "/images/auto_planting.jpg",
+      "tech": ["Automation", "Agriculture", "Sensors", "Actuators"],
+      "link": "https://github.com/AungChoOo/Auto_planting"
+    }
+  ],
+  "experience": [
+    {
+      "company": "ROM Robotics",
+      "role": "Robotics Engineer",
+      "period": "Present",
+      "description": "Working on autonomous mobile robots using ROS and Slamware technology for indoor navigation."
+    }
+  ],
+  "education": [
+    {
+      "degree": "Electronics Engineering",
+      "institution": "University of Technology",
+      "period": "Present",
+      "description": "Specializing in embedded systems and robotics."
+    }
+  ]
+}

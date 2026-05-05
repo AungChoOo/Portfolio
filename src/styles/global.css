@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+:root {
+  /* ── Core palette — Option 07: Midnight · Teal · Foam ── */
+  --bg:           #0a0d0e;   /* slate black */
+  --card-bg:      #13181a;   /* slate surface */
+  --card-border:  #1c2326;   /* slate border */
+  --accent:       #2dd4bf;   /* teal */
+  --accent-hover: #14b8a6;   /* deeper teal */
+  --text:         #c8d8d6;   /* foam */
+  --muted:        #7a8888;   /* muted slate */
+
+  /* ── Derived shades ── */
+  --inner-bg:   #1c2326;   /* inner card bg */
+  --dim-border: #232a2f;   /* slate button border */
+  --very-dim:   #0d1416;   /* slate icons */
+  --muted2:     #6a7a7f;   /* dimmer slate labels */
+}
+
+[x-cloak] { display: none !important; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Fraunces', 'Inter', system-ui, serif;
+}
+
+code, pre, .font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.bento-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.bento-card.clickable {
+  cursor: pointer;
+}
+
+.bento-card.clickable:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 32px color-mix(in srgb, var(--accent) 12%, transparent);
+  transform: translateY(-2px);
+}
+
+.tag {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  color: var(--accent);
+  border-radius: 0.375rem;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--card-bg); }
+::-webkit-scrollbar-thumb { background: var(--dim-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--very-dim); }

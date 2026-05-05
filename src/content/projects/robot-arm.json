@@ -1,0 +1,9 @@
+{
+  "title": "Robot Arm",
+  "description": "Robot Arm with wireless controller. The main function of the robot arm is that it can save the positions user moved and repeat that positions anytime user wants.",
+  "tags": ["Robotics", "Embedded C", "Wireless", "Mechanical Design"],
+  "image": "/images/robot_arm.jpg",
+  "repo": "https://github.com/AungChoOo/Robot_arm_with_wireless_controller",
+  "featured": false,
+  "order": 7
+}

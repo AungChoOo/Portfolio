@@ -1,0 +1,9 @@
+{
+  "title": "Multi-Sensor Modules",
+  "description": "Breadboard compatible 13 in 1 multi-sensor module. 6dof IMU + 3dof Magnetometer + 4 Gas sensors. Three different IC from Bosch Sensortec including BMI088, BMM150 and BME680.",
+  "tags": ["PCB Design", "Embedded C", "Sensors", "I2C"],
+  "image": "/images/Multi-Sensor.png",
+  "repo": "https://github.com/AungChoOo/Multi-Sensor",
+  "featured": true,
+  "order": 1
+}

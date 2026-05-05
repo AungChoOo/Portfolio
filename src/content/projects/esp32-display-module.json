@@ -1,0 +1,8 @@
+{
+  "title": "Esp32 Display Module",
+  "description": "Custom Esp32 microcontroller with ZIF connector for a display. On board battery management system including battery charger, power path and protection function.",
+  "tags": ["PCB Design", "ESP32", "Embedded C", "Power Management"],
+  "image": "/images/Esp32.jpg",
+  "featured": false,
+  "order": 3
+}

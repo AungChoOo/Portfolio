@@ -1,0 +1,56 @@
+---
+// No props — data fetched client-side
+---
+<div class="bento-card p-4 flex flex-col gap-2">
+  <!-- Header -->
+  <div class="flex items-center gap-2">
+    <p class="text-sm text-(--accent) font-semibold uppercase tracking-wide">Bangkok, TH</p>
+  </div>
+
+  <!-- Clock -->
+  <div>
+    <p id="bkk-time" class="text-2xl font-bold text-white tabular-nums leading-none">--:--:--</p>
+    <div class="flex items-center justify-between mt-1">
+      <p id="bkk-date" class="text-[10px] text-(--muted2) uppercase tracking-wide">---</p>
+      <p id="bkk-temp" class="text-sm font-semibold text-white">--°C</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    const el = (id: string) => document.getElementById(id)!;
+    el('bkk-time').textContent = now.toLocaleTimeString('en-US', {
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false, timeZone: 'Asia/Bangkok',
+    });
+    el('bkk-date').textContent = now.toLocaleDateString('en-US', {
+      weekday: 'short', month: 'short', day: 'numeric',
+      timeZone: 'Asia/Bangkok',
+    });
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  const WMO: Record<number, string> = {
+    0: '#fbbf24', 1: '#fbbf24',
+    2: '#94a3b8', 3: '#64748b',
+    45: '#64748b', 48: '#64748b',
+    51: '#60a5fa', 53: '#60a5fa', 55: '#60a5fa',
+    61: '#60a5fa', 63: '#3b82f6', 65: '#3b82f6',
+    80: '#60a5fa', 81: '#3b82f6', 82: '#3b82f6',
+    95: '#a855f7', 96: '#a855f7', 99: '#a855f7',
+  };
+
+  fetch(
+    'https://api.open-meteo.com/v1/forecast?latitude=13.7563&longitude=100.5018&current=temperature_2m,weather_code&timezone=Asia/Bangkok'
+  )
+    .then((r) => r.json())
+    .then((data) => {
+      const temp = Math.round(data.current.temperature_2m);
+      document.getElementById('bkk-temp')!.textContent = `${temp}°C`;
+    })
+    .catch(() => {});
+</script>

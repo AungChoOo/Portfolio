@@ -1,0 +1,8 @@
+{
+  "title": "Class D Amplifier",
+  "description": "Class D Amplifier for mono speaker. NE5332ADR is used for Preamp and TPA3112D1PWPR for Power amp. The board is specifically made for the guitar.",
+  "tags": ["PCB Design", "Audio", "Analog Circuits"],
+  "image": "/images/Class_D_amp.jpg",
+  "featured": false,
+  "order": 4
+}

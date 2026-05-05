@@ -1,0 +1,9 @@
+{
+  "title": "Slamware Mobile Robot",
+  "description": "Autonomous mobile robot which can mapping the environment(indoor), localize its own position and move freely to desired location. In this project, we, the team of ROM Robotics, used ROS and Slamware technology.",
+  "tags": ["ROS", "SLAM", "Robotics", "Python"],
+  "image": "/images/Mobile_robot.jpg",
+  "repo": "https://github.com/AungChoOo/slamtec-dev-team",
+  "featured": true,
+  "order": 2
+}

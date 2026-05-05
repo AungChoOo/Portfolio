@@ -1,0 +1,9 @@
+{
+  "title": "Shadow Head",
+  "description": "Robot Head that can mimic positions of human's head in 3-axis. In this project, I modified the design of James Bruton's robot eye and remove the eyes.",
+  "tags": ["Robotics", "3D Design", "Servo Control", "Python"],
+  "image": "/images/Shadow_head.jpg",
+  "repo": "https://github.com/AungChoOo/Shadow_Head",
+  "featured": false,
+  "order": 5
+}

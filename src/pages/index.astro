@@ -1,0 +1,448 @@
+---
+import Base from "../layouts/Base.astro";
+import HeroCard from "../components/cards/HeroCard.astro";
+import AboutCard from "../components/cards/AboutCard.astro";
+import SkillsCard from "../components/cards/SkillsCard.astro";
+import ContactCard from "../components/cards/ContactCard.astro";
+import LiveCard from "../components/cards/LiveCard.astro";
+import ProjectsCard from "../components/cards/ProjectsCard.astro";
+import Icon from "../components/ui/Icon.astro";
+import portfolioData from "../data/portfolio.json";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
+
+const { personal, social, about, skills } = portfolioData;
+---
+
+<Base>
+    <div
+        x-data=`{
+            modal: null,
+            email: '${personal.email}',
+            phone: '${personal.phone}',
+            toast: null,
+            showToast(message) {
+                this.toast = message;
+                setTimeout(() => { this.toast = null; }, 2000);
+            }
+        }`
+        @keydown.escape.window="modal = null"
+        class="min-h-screen px-4 pt-5 pb-4 md:px-6 md:pt-10 md:pb-6"
+    >
+        <!-- Bento Grid -->
+        <div
+            class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-auto"
+        >
+            <!-- Row 1 -->
+            <HeroCard
+                name={personal.name}
+                title={personal.title}
+                tagline={personal.tagline}
+                resumeUrl={personal.resumeUrl}
+            />
+            <AboutCard name={personal.name} />
+
+            <!-- Row 2 -->
+            <SkillsCard skills={skills} />
+            <ProjectsCard projects={sortedProjects} />
+            <div class="col-span-1 flex flex-col gap-4">
+                <LiveCard />
+                <ContactCard
+                    email={personal.email}
+                    phone={personal.phone}
+                    social={social}
+                />
+            </div>
+        </div>
+
+        <!-- ── Modal Overlay ── -->
+        <div
+            x-cloak
+            x-show="modal !== null"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            @click.self="modal = null"
+            class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto"
+        >
+            <!-- About Modal -->
+            <div
+                x-show="modal === 'about'"
+                class="relative bg-(--card-bg) border border-(--card-border) rounded-2xl w-full max-w-xl my-auto"
+            >
+                <button
+                    @click="modal = null"
+                    class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-(--inner-bg) border border-(--dim-border) text-(--muted) hover:text-white flex items-center justify-center text-xl leading-none transition-colors"
+                    >&times;</button
+                >
+                <div class="p-8">
+                    <div class="flex items-start gap-5 mb-6">
+                        <img
+                            src="/images/Profile.png"
+                            alt={personal.name}
+                            class="w-20 h-20 rounded-xl object-cover flex-shrink-0 border"
+                            style="object-position: center 10%; border-color: var(--card-bg)"
+                        />
+                        <div>
+                            <p
+                                class="text-[10px] text-(--accent) font-mono uppercase tracking-widest mb-1"
+                            >
+                                About
+                            </p>
+                            <h2 class="text-xl font-bold text-white">
+                                {personal.name}
+                            </h2>
+                            <p class="text-(--muted) text-sm">
+                                {personal.title}
+                            </p>
+                        </div>
+                    </div>
+                    <p class="text-(--muted) text-sm leading-relaxed mb-6">
+                        {about.description}
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="tag">PCB Designer</span>
+                        <span class="tag">Embedded HW/SW</span>
+                        <span class="tag">Robotics Engineer</span>
+                        <span class="tag">AI Enthusiast</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div
+                            class="bg-(--inner-bg) border border-(--card-border) rounded-xl p-4 text-center"
+                        >
+                            <p class="text-2xl font-bold text-(--accent)">5+</p>
+                            <p class="text-xs text-(--muted) mt-1">
+                                Years Experience
+                            </p>
+                        </div>
+                        <div
+                            class="bg-(--inner-bg) border border-(--card-border) rounded-xl p-4 text-center"
+                        >
+                            <p class="text-2xl font-bold text-(--accent)">
+                                50+
+                            </p>
+                            <p class="text-xs text-(--muted) mt-1">
+                                Projects Completed
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Modal -->
+            <div
+                x-show="modal === 'skills'"
+                class="relative bg-(--card-bg) border border-(--card-border) rounded-2xl w-full max-w-xl my-auto"
+            >
+                <button
+                    @click="modal = null"
+                    class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-(--inner-bg) border border-(--dim-border) text-(--muted) hover:text-white flex items-center justify-center text-xl leading-none transition-colors"
+                    >&times;</button
+                >
+                <div class="p-8">
+                    <p
+                        class="text-[10px] text-(--accent) font-mono uppercase tracking-widest mb-1"
+                    >
+                        Skills
+                    </p>
+                    <h2 class="text-xl font-bold text-white mb-6">
+                        Skills & Tools
+                    </h2>
+
+                    <!-- Skills Section -->
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-center gap-2">
+                            <Icon
+                                name="cpu"
+                                size={14}
+                                class="text-(--accent)"
+                            />
+                            <p class="text-xs text-(--muted2) uppercase tracking-wider">
+                                Skills
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            {
+                                skills
+                                    .filter((s) => s.category === "skills")
+                                    .map((skill) => {
+                                        const match = skill.name.match(/^([^(]+)\s*\(([^)]+)\)$/);
+                                        const main = match ? match[1].trim() : skill.name;
+                                        const sub = match ? match[2] : '';
+                                        return (
+                                            <div class="text-sm">
+                                                <p class="text-(--text) font-medium">{main}</p>
+                                                {sub && <p class="text-xs text-(--muted2) mt-1">{sub}</p>}
+                                            </div>
+                                        );
+                                    })
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="h-px bg-gradient-to-r from-transparent via-(--card-border) to-transparent mb-6"></div>
+
+                    <!-- Tools Section -->
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2">
+                            <Icon
+                                name="wrench"
+                                size={14}
+                                class="text-(--accent)"
+                            />
+                            <p class="text-xs text-(--muted2) uppercase tracking-wider">
+                                Tools
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            {
+                                skills
+                                    .filter((s) => s.category === "tools")
+                                    .map((skill) =>
+                                        skill.icon ? (
+                                            <div class="flex items-center gap-2 px-3 py-1.5 bg-(--inner-bg) border border-(--card-border) rounded-lg text-(--text) hover:border-(--accent) hover:text-(--accent) transition-colors">
+                                                <Icon
+                                                    name={skill.icon}
+                                                    size={14}
+                                                />
+                                                <span class="text-sm">
+                                                    {skill.name}
+                                                </span>
+                                            </div>
+                                        ) : (
+                                            <span class="text-sm px-3 py-1.5 bg-(--inner-bg) border border-(--card-border) rounded-lg text-(--text)">
+                                                {skill.name}
+                                            </span>
+                                        ),
+                                    )
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Modal -->
+            <div
+                x-show="modal === 'contact'"
+                class="relative bg-(--card-bg) border border-(--card-border) rounded-2xl w-full max-w-md my-auto"
+            >
+                <button
+                    @click="modal = null"
+                    class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-(--inner-bg) border border-(--dim-border) text-(--muted) hover:text-white flex items-center justify-center text-xl leading-none transition-colors"
+                    >&times;</button
+                >
+                <div class="p-8">
+                    <p
+                        class="text-[10px] text-(--accent) font-mono uppercase tracking-widest mb-1"
+                    >
+                        Contact
+                    </p>
+                    <h2 class="text-xl font-bold text-white mb-6">
+                        Get in Touch
+                    </h2>
+
+                    <div class="space-y-3 mb-6">
+                        <button
+                            @click="navigator.clipboard.writeText(email); showToast('Copied email to clipboard')"
+                            class="w-full flex items-center gap-3 p-3 bg-(--inner-bg) border border-(--card-border) rounded-xl hover:border-(--accent) transition-colors group cursor-pointer"
+                        >
+                            <div
+                                class="w-8 h-8 rounded-lg bg-(--inner-bg) group-hover:bg-(--accent)/10 flex items-center justify-center flex-shrink-0 transition-colors"
+                            >
+                                <svg
+                                    width="14"
+                                    height="14"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke-width="2"
+                                    style="stroke: var(--muted2)"
+                                    class="group-hover:stroke-accent transition-colors"
+                                >
+                                    <rect
+                                        x="2"
+                                        y="4"
+                                        width="20"
+                                        height="16"
+                                        rx="2"></rect>
+                                    <path
+                                        d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <p
+                                    class="text-[10px] text-(--muted2) uppercase tracking-wide"
+                                >
+                                    Email
+                                </p>
+                                <p
+                                    class="text-sm text-(--muted) group-hover:text-white transition-colors"
+                                >
+                                    {personal.email}
+                                </p>
+                            </div>
+                        </button>
+                        <button
+                            @click="navigator.clipboard.writeText(phone); showToast('Copied phone number to clipboard')"
+                            class="w-full flex items-center gap-3 p-3 bg-(--inner-bg) border border-(--card-border) rounded-xl hover:border-(--accent) transition-colors group cursor-pointer"
+                        >
+                            <div
+                                class="w-8 h-8 rounded-lg bg-(--inner-bg) group-hover:bg-(--accent)/10 flex items-center justify-center flex-shrink-0 transition-colors"
+                            >
+                                <svg
+                                    width="14"
+                                    height="14"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke-width="2"
+                                    style="stroke: var(--muted2)"
+                                    class="group-hover:stroke-accent transition-colors"
+                                >
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <p
+                                    class="text-[10px] text-(--muted2) uppercase tracking-wide"
+                                >
+                                    Phone
+                                </p>
+                                <p class="text-sm text-(--muted) group-hover:text-white transition-colors">
+                                    {personal.phone}
+                                </p>
+                            </div>
+                        </button>
+                    </div>
+
+                    <p
+                        class="text-[10px] text-(--muted2) uppercase tracking-wider mb-3"
+                    >
+                        Profiles
+                    </p>
+                    <div class="grid grid-cols-2 gap-2">
+                        {
+                            social.map((s) => (
+                                <a
+                                    href={s.url}
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="flex items-center gap-2.5 p-3 bg-(--inner-bg) border border-(--card-border) rounded-xl hover:border-(--accent) hover:text-(--accent) text-(--muted) transition-colors"
+                                >
+                                    <Icon name={s.icon} size={15} />
+                                    <span class="text-sm font-medium">
+                                        {s.name}
+                                    </span>
+                                    <svg
+                                        width="9"
+                                        height="9"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2.5"
+                                        class="ml-auto opacity-40 flex-shrink-0"
+                                    >
+                                        <path d="M7 17L17 7M7 7h10v10" />
+                                    </svg>
+                                </a>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Modal -->
+            <div
+                x-show="modal === 'projects'"
+                class="relative bg-(--card-bg) border border-(--card-border) rounded-2xl w-full max-w-4xl my-auto"
+            >
+                <button
+                    @click="modal = null"
+                    class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-(--inner-bg) border border-(--dim-border) text-(--muted) hover:text-white flex items-center justify-center text-xl leading-none transition-colors"
+                    >&times;</button
+                >
+                <div class="p-8">
+                    <p
+                        class="text-[10px] text-(--accent) font-mono uppercase tracking-widest mb-1"
+                    >
+                        Projects
+                    </p>
+                    <h2 class="text-xl font-bold text-white mb-6">
+                        Featured Projects
+                    </h2>
+
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[60vh] overflow-y-auto pr-1"
+                    >
+                        {
+                            sortedProjects.map((project) => (
+                                <div class="bg-(--inner-bg) border border-(--card-border) rounded-xl overflow-hidden hover:border-(--dim-border) transition-colors">
+                                    <div
+                                        class="relative"
+                                        style="aspect-ratio: 16/7"
+                                    >
+                                        <img
+                                            src={project.data.image}
+                                            alt={project.data.title}
+                                            class="w-full h-full object-cover opacity-70"
+                                        />
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                    </div>
+                                    <div class="p-4">
+                                        <div class="flex items-start justify-between gap-2 mb-2">
+                                            <h3 class="text-white font-semibold text-sm">
+                                                {project.data.title}
+                                            </h3>
+                                            {project.data.repo && (
+                                                <a
+                                                    href={project.data.repo}
+                                                    target="_blank"
+                                                    rel="noopener"
+                                                    class="flex-shrink-0 text-(--muted2) hover:text-(--accent) transition-colors"
+                                                    title="View on GitHub"
+                                                >
+                                                    <svg
+                                                        width="14"
+                                                        height="14"
+                                                        viewBox="0 0 24 24"
+                                                        fill="currentColor"
+                                                    >
+                                                        <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                                                    </svg>
+                                                </a>
+                                            )}
+                                        </div>
+                                        <p class="text-(--muted) text-xs leading-relaxed mb-3">
+                                            {project.data.description}
+                                        </p>
+                                        <div class="flex flex-wrap gap-1">
+                                            {project.data.tags.map((tag) => (
+                                                <span class="tag">{tag}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toast Notification -->
+            <div
+                x-show="toast !== null"
+                x-transition
+                class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-(--accent) text-black px-6 py-3 rounded-lg font-semibold text-sm shadow-lg"
+            >
+                <span x-text="toast"></span>
+            </div>
+        </div>
+    </div>
+</Base>

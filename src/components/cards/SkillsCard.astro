@@ -1,0 +1,166 @@
+---
+import Icon from "../ui/Icon.astro";
+
+interface Skill {
+    name: string;
+    category: string;
+    icon?: string;
+}
+interface Props {
+    skills: Skill[];
+}
+const { skills } = Astro.props;
+const skillItems = skills.filter((s) => s.category === "skills");
+const toolItems = skills.filter((s) => s.category === "tools");
+const marqueeIcons = [...toolItems, ...toolItems]; // duplicate for seamless loop
+
+// Parse skill format: "Main Skill (sub-skills)"
+const parseSkill = (name: string) => {
+    const match = name.match(/^([^(]+)\s*\(([^)]+)\)$/);
+    if (match) {
+        return { main: match[1].trim(), sub: match[2].trim() };
+    }
+    return { main: name, sub: "" };
+};
+
+const brandColors: Record<string, string> = {
+    kicad: "#314CB0",
+    altiumdesigner: "#A5915F",
+    dassaultsystemes: "#0096DB",
+    autodesk: "#0696D7",
+    visualstudiocode: "#007ACC",
+    arduino: "#00878A",
+    stmicroelectronics: "#39C0E0",
+    espressif: "#E7352C",
+    anthropic: "#D4A27F",
+    zedindustries: "#5B9EE8",
+    notion: "#E5E5E5",
+    github: "#E5E5E5",
+    ros: "#5B9BD5",
+};
+---
+
+<div
+    class="bento-card clickable col-span-2 p-6 flex flex-col gap-4"
+    @click="modal = 'skills'"
+>
+    <!-- Skills Section -->
+    <div class="space-y-3">
+        <p class="text-base text-(--accent) font-semibold">What I can do</p>
+        <div class="grid grid-cols-2 gap-x-4 gap-y-3">
+            {
+                skillItems.map((skill) => {
+                    const parsed = parseSkill(skill.name);
+                    return (
+                        <div class="group cursor-default hover:opacity-100 opacity-90 transition-opacity">
+                            <p class="text-sm text-(--text) font-medium leading-tight">
+                                {parsed.main}
+                            </p>
+                            {parsed.sub && (
+                                <p class="text-[12px] text-(--muted2) mt-1 ml-0 leading-tight">
+                                    {parsed.sub}
+                                </p>
+                            )}
+                        </div>
+                    );
+                })
+            }
+        </div>
+    </div>
+
+    <!-- Divider -->
+    <div
+        class="h-px bg-gradient-to-r from-transparent via-(--card-border) to-transparent"
+    >
+    </div>
+
+    <!-- Tools Section -->
+    <div class="space-y-3">
+        <p class="text-base text-(--accent) font-semibold">What I use</p>
+
+        <!-- Tools — scrolling marquee -->
+        <div class="marquee-wrap overflow-hidden -mx-6 px-0 mt-2">
+            <div
+                class="marquee-track flex gap-6 px-6"
+                style="width: max-content"
+            >
+                {
+                    marqueeIcons.map((skill, i) => (
+                        <div
+                            class={`tool-icon group flex-shrink-0 h-11 rounded-xl bg-(--inner-bg) flex items-center justify-center text-(--muted) transition-all duration-150 cursor-default hover:scale-110 ${skill.icon === 'kicad' ? 'w-22 px-3' : 'w-11'}`}
+                            title={skill.name}
+                            data-color={
+                                skill.icon
+                                    ? (brandColors[skill.icon] ?? "")
+                                    : ""
+                            }
+                            aria-hidden={
+                                i >= toolItems.length ? "true" : undefined
+                            }
+                        >
+                            {skill.icon && <Icon name={skill.icon} size={skill.icon === 'kicad' ? 44 : 22} />}
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes scroll-left {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    .marquee-track {
+        animation: scroll-left 18s linear infinite;
+    }
+
+    .marquee-wrap {
+        mask-image: linear-gradient(
+            to right,
+            transparent 0px,
+            black 28px,
+            black calc(100% - 28px),
+            transparent 100%
+        );
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0px,
+            black 28px,
+            black calc(100% - 28px),
+            transparent 100%
+        );
+    }
+
+    .marquee-wrap:hover .marquee-track {
+        animation-play-state: paused;
+    }
+
+    .tool-icon:hover {
+        box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 20%, transparent);
+    }
+</style>
+
+<script>
+    const accentColor = getComputedStyle(document.documentElement)
+        .getPropertyValue("--accent")
+        .trim();
+
+    document.querySelectorAll<HTMLElement>(".tool-icon").forEach((el) => {
+        const color = el.dataset.color || accentColor;
+        el.addEventListener("mouseenter", () => {
+            el.style.color = color;
+            el.style.borderColor = color;
+        });
+        el.addEventListener("mouseleave", () => {
+            el.style.color = "";
+            el.style.borderColor = "";
+        });
+    });
+</script>
