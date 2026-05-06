@@ -36,24 +36,24 @@ const { personal, social, about, skills } = portfolioData;
             class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 auto-rows-auto"
         >
             <!-- Row 1 -->
+            <ProfileCard name={personal.name} />
             <HeroCard
                 name={personal.name}
                 title={personal.title}
                 tagline={personal.tagline}
                 resumeUrl={personal.resumeUrl}
             />
-            <ProfileCard name={personal.name} />
 
             <!-- Row 2 -->
             <SkillsCard skills={skills} />
             <ProjectsCard projects={sortedProjects} />
             <div class="col-span-1 flex flex-col gap-4">
-                <LiveCard />
                 <ContactCard
                     email={personal.email}
                     phone={personal.phone}
                     social={social}
                 />
+                <LiveCard />
             </div>
         </div>
 
