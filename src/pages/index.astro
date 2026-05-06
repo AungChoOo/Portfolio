@@ -1,7 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import HeroCard from "../components/cards/HeroCard.astro";
-import AboutCard from "../components/cards/AboutCard.astro";
+import ProfileCard from "../components/cards/ProfileCard.astro";
 import SkillsCard from "../components/cards/SkillsCard.astro";
 import ContactCard from "../components/cards/ContactCard.astro";
 import LiveCard from "../components/cards/LiveCard.astro";
@@ -42,7 +42,7 @@ const { personal, social, about, skills } = portfolioData;
                 tagline={personal.tagline}
                 resumeUrl={personal.resumeUrl}
             />
-            <AboutCard name={personal.name} />
+            <ProfileCard name={personal.name} />
 
             <!-- Row 2 -->
             <SkillsCard skills={skills} />
