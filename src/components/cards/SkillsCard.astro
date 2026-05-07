@@ -44,7 +44,6 @@ const brandColors: Record<string, string> = {
     class="bento-card clickable col-span-1 lg:col-span-2 lg:row-span-3 p-6 flex flex-col gap-4"
     @click="modal = 'skills'"
 >
-    <!-- Skills Section -->
     <div class="space-y-3">
         <p class="text-base text-(--accent) font-semibold">What I can do</p>
         <div class="grid grid-cols-2 gap-x-4 gap-y-3">
@@ -68,17 +67,11 @@ const brandColors: Record<string, string> = {
         </div>
     </div>
 
-    <!-- Divider -->
-    <div
-        class="h-px bg-gradient-to-r from-transparent via-(--card-border) to-transparent"
-    >
-    </div>
+    <div class="h-px bg-gradient-to-r from-transparent via-(--card-border) to-transparent" />
 
-    <!-- Tools Section -->
     <div class="space-y-3">
         <p class="text-base text-(--accent) font-semibold">What I use</p>
 
-        <!-- Tools — scrolling marquee -->
         <div class="marquee-wrap overflow-hidden -mx-6 px-0 mt-2">
             <div
                 class="marquee-track flex gap-6 px-6"
