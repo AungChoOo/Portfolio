@@ -9,8 +9,9 @@ const { name, title, tagline, resumeUrl } = Astro.props;
 ---
 
 <div
-    class="bento-card col-span-1 lg:col-span-3 relative p-8 flex flex-col justify-between"
+    class="bento-card clickable col-span-1 lg:col-span-3 relative p-8 flex flex-col justify-between"
     style="min-height: 260px"
+    @click="modal = 'about'"
 >
     <div
         class="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none"
