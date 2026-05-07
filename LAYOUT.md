@@ -6,8 +6,8 @@
 |---|---|
 | ProfileCard | ProfileCard |
 | ProfileCard | ProfileCard |
-| HeroCard | HeroCard |
-| HeroCard | HeroCard |
+| AboutmeCard | AboutmeCard |
+| AboutmeCard | AboutmeCard |
 | SkillsCard | SkillsCard |
 | SkillsCard | SkillsCard |
 | SkillsCard | SkillsCard |
@@ -24,8 +24,8 @@
 
 | | | | | | | | |
 |---|---|---|---|---|---|---|---|
-| ProfileCard | ProfileCard | HeroCard | HeroCard | HeroCard | HeroCard | HeroCard | HeroCard | HeroCard |
-| ProfileCard | ProfileCard | HeroCard | HeroCard | HeroCard | HeroCard | HeroCard | HeroCard | HeroCard |
+| ProfileCard | ProfileCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard |
+| ProfileCard | ProfileCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard |
 | SkillsCard | SkillsCard | SkillsCard | SkillsCard | ProjectsCard | ProjectsCard | LiveCard | LiveCard |
 | SkillsCard | SkillsCard | SkillsCard | SkillsCard | ProjectsCard | ProjectsCard | ContactCard | ContactCard |
 
@@ -34,8 +34,8 @@
 
 | | |
 |---|---|
-| HeroCard | HeroCard |
-| HeroCard | HeroCard |
+| AboutmeCard | AboutmeCard |
+| AboutmeCard | AboutmeCard |
 | ProjectsCard | ContactCard |
 | ProjectsCard | ContactCard |
 | ProjectsCard | LiveCard |

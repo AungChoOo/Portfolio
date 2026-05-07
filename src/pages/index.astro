@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import HeroCard from "../components/cards/HeroCard.astro";
+import AboutmeCard from "../components/cards/AboutmeCard.astro";
 import ProfileCard from "../components/cards/ProfileCard.astro";
 import SkillsCard from "../components/cards/SkillsCard.astro";
 import ContactCard from "../components/cards/ContactCard.astro";
@@ -53,7 +53,7 @@ const { personal, social, about, skills } = portfolioData;
         >
             <!-- Row 1 -->
             <ProfileCard name={personal.name} />
-            <HeroCard
+            <AboutmeCard
                 name={personal.name}
                 title={personal.title}
                 tagline={personal.tagline}
@@ -464,7 +464,7 @@ const { personal, social, about, skills } = portfolioData;
 </Base>
 
 <style is:global>
-    /* Scale down HeroCard headline */
+    /* Scale down AboutmeCard headline */
     .mobile-preview .text-5xl {
         font-size: 1.75rem !important;
         line-height: 1.2 !important;
