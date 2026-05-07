@@ -3,33 +3,29 @@
 ---
 
 <div class="bento-card col-span-1 p-4 flex flex-col gap-2" style="flex: 1">
-    <!-- Header -->
-    <div class="flex items-center gap-2">
+    <!-- Location + Date -->
+    <div class="flex items-center justify-between">
         <p
             class="text-sm text-(--accent) font-semibold uppercase tracking-wide"
         >
             Bangkok, TH
         </p>
-    </div>
-
-    <!-- Clock -->
-    <div class="space-y-2">
-        <!-- Time and Temperature Row -->
-        <div class="flex items-center justify-between">
-            <p
-                id="bkk-time"
-                class="text-2xl font-bold text-white tabular-nums leading-none"
-            >
-                --:--:--
-            </p>
-            <p id="bkk-temp" class="text-sm font-semibold text-white">--°C</p>
-        </div>
-        <!-- Date Row -->
         <p
             id="bkk-date"
-            class="text-[10px] text-(--muted2) uppercase tracking-wide"
+            class="text-xs text-(--muted2) uppercase tracking-wide"
         >
             ---
+        </p>
+    </div>
+
+    <!-- Temperature + Time -->
+    <div class="flex items-center justify-between">
+        <p id="bkk-temp" class="text-2xl font-semibold text-white">--°C</p>
+        <p
+            id="bkk-time"
+            class="text-2xl font-bold text-white tabular-nums leading-none"
+        >
+            --:--:--
         </p>
     </div>
 </div>
