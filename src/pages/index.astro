@@ -23,6 +23,7 @@ const { personal, social, about, skills } = portfolioData;
             email: '${personal.email}',
             phone: '${personal.phone}',
             toast: null,
+            mobileView: false,
             showToast(message) {
                 this.toast = message;
                 setTimeout(() => { this.toast = null; }, 2000);
@@ -31,9 +32,24 @@ const { personal, social, about, skills } = portfolioData;
         @keydown.escape.window="modal = null"
         class="min-h-screen px-4 pt-4 pb-4 md:px-6 md:pt-8 md:pb-6 lg:pt-10"
     >
+        <!-- Temporary layout toggle button -->
+        <div class="max-w-7xl mx-auto mb-3 flex justify-end">
+            <button
+                @click="mobileView = !mobileView"
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-mono transition-colors"
+                :class="mobileView ? 'bg-(--accent)/10 border-(--accent) text-(--accent)' : 'bg-(--inner-bg) border-(--card-border) text-(--muted) hover:border-(--accent) hover:text-(--accent)'"
+            >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="5" y="2" width="14" height="20" rx="2"/>
+                    <line x1="12" y1="18" x2="12" y2="18.01"/>
+                </svg>
+                <span x-text="mobileView ? 'Mobile View' : 'Switch to Mobile'"></span>
+            </button>
+        </div>
+
         <!-- Bento Grid -->
         <div
-            class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 auto-rows-auto"
+            :class="mobileView ? 'mobile-preview max-w-sm mx-auto flex flex-col gap-3' : 'max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 auto-rows-auto'"
         >
             <!-- Row 1 -->
             <ProfileCard name={personal.name} />
@@ -47,7 +63,7 @@ const { personal, social, about, skills } = portfolioData;
             <!-- Row 2 -->
             <SkillsCard skills={skills} />
             <ProjectsCard projects={sortedProjects} />
-            <div class="col-span-1 flex flex-col gap-4">
+            <div class="contact-live-wrapper col-span-1 flex flex-col gap-4">
                 <ContactCard
                     email={personal.email}
                     phone={personal.phone}
@@ -446,3 +462,16 @@ const { personal, social, about, skills } = portfolioData;
         </div>
     </div>
 </Base>
+
+<style is:global>
+    /* Scale down HeroCard headline */
+    .mobile-preview .text-5xl {
+        font-size: 1.75rem !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Unwrap ContactCard + LiveCard wrapper so they stack as separate flex items */
+    .mobile-preview > .contact-live-wrapper {
+        display: contents;
+    }
+</style>
