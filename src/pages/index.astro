@@ -1,7 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import AboutmeCard from "../components/cards/AboutmeCard.astro";
-import ProfileCard from "../components/cards/ProfileCard.astro";
+import HeroCard from "../components/cards/HeroCard.astro";
 import SkillsCard from "../components/cards/SkillsCard.astro";
 import ContactCard from "../components/cards/ContactCard.astro";
 import LiveCard from "../components/cards/LiveCard.astro";
@@ -52,7 +52,7 @@ const { personal, social, about, skills } = portfolioData;
             :class="mobileView ? 'mobile-preview max-w-sm mx-auto flex flex-col gap-3' : 'max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-4 auto-rows-auto'"
         >
             <!-- Row 1 -->
-            <ProfileCard name={personal.name} />
+            <HeroCard name={personal.name} />
             <AboutmeCard
                 name={personal.name}
                 title={personal.title}
