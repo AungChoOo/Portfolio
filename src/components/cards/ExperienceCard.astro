@@ -1,12 +1,14 @@
 ---
 interface Props {
-  experiences: any[];
+    experiences: any[];
 }
 const { experiences } = Astro.props;
 ---
+
 <div
-  class="bento-card clickable col-span-1 flex flex-col items-center justify-center"
-  @click="modal = 'experience'"
+    class="bento-card clickable col-span-1 flex flex-col items-center justify-center"
+    style="flex: 1.5; background: linear-gradient(135deg, var(--card-bg), color-mix(in srgb, var(--accent) 15%, var(--card-bg)))"
+    @click="modal = 'experience'"
 >
-  <p class="text-3xl font-bold text-white">Experience</p>
+    <p class="text-6xl font-bold text-(--accent)" style="font-family: 'Tangerine', cursive">Experiences</p>
 </div>

@@ -44,11 +44,13 @@ const { personal, social, about, skills, experience } = portfolioData;
                 resumeUrl={personal.resumeUrl}
             />
 
-            <!-- Row 2–3 -->
+            <!-- Row 2–4 -->
             <SkillsCard skills={skills} />
-            <ExperienceCard experiences={experience} />
-            <LiveCard />
-            <ProjectsCard projects={sortedProjects} />
+            <div class="col-span-1 lg:row-span-3 flex flex-col gap-3 lg:gap-4">
+                <LiveCard />
+                <ExperienceCard experiences={experience} />
+                <ProjectsCard projects={sortedProjects} />
+            </div>
             <ContactCard
                 email={personal.email}
                 phone={personal.phone}
@@ -247,8 +249,18 @@ const { personal, social, about, skills, experience } = portfolioData;
                                         <h3 class="text-white font-semibold text-sm">{exp.role}</h3>
                                         <span class="text-xs text-(--muted2) flex-shrink-0">{exp.period}</span>
                                     </div>
-                                    <p class="text-(--accent) text-xs mb-2">{exp.company}</p>
-                                    <p class="text-(--muted) text-xs leading-relaxed">{exp.description}</p>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <p class="text-(--accent) text-xs">{exp.company}</p>
+                                        {exp.location && <span class="text-(--muted2) text-xs">· {exp.location}</span>}
+                                    </div>
+                                    <ul class="space-y-1">
+                                        {exp.description.map((point: string) => (
+                                            <li class="text-(--muted) text-xs leading-relaxed flex gap-2">
+                                                <span class="text-(--accent) flex-shrink-0">·</span>
+                                                <span>{point}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
                             ))
                         }

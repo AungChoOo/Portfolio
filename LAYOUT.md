@@ -14,17 +14,19 @@
 | SkillsCard | SkillsCard |
 | SkillsCard | SkillsCard |
 | SkillsCard | SkillsCard |
-| ProjectsCard | ProjectsCard |
-| ProjectsCard | ProjectsCard |
-| ContactCard | ContactCard |
-| ContactCard | ContactCard |
+| ExperiencesCard | ExperiencesCard |
 | LiveCard | LiveCard |
+| ProjectsCard | ProjectsCard |
+| ContactCard | ContactCard |
+| ContactCard | ContactCard |
 
-## Desktop Layout (4 rows & 8 Columns)
+## Desktop Layout (6 Rows & 12 Columns)
 
-| | | | | | | | |
-|---|---|---|---|---|---|---|---|
-| HeroCard | HeroCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard |
-| HeroCard | HeroCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard |
-| SkillsCard | SkillsCard | SkillsCard | SkillsCard | ExperiencesCard | ExperiencesCard | LiveCard | LiveCard |
-| SkillsCard | SkillsCard | SkillsCard | SkillsCard | ProjectsCard | ProjectsCard | ContactCard | ContactCard |
+| | | | | | | | | | | | |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| HeroCard | HeroCard | HeroCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard |
+| HeroCard | HeroCard | HeroCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard |
+| HeroCard | HeroCard | HeroCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard |
+| SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | LiveCard | LiveCard | LiveCard | ContactCard | ContactCard | ContactCard |
+| SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | ExperiencesCard | ExperiencesCard | ExperiencesCard | ContactCard | ContactCard | ContactCard |
+| SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | ProjectsCard | ProjectsCard | ProjectsCard | ContactCard | ContactCard | ContactCard |

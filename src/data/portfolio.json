@@ -143,10 +143,53 @@
   ],
   "experience": [
     {
-      "company": "ROM Robotics",
-      "role": "Robotics Engineer",
-      "period": "Present",
-      "description": "Working on autonomous mobile robots using ROS and Slamware technology for indoor navigation."
+      "company": "Upwork",
+      "role": "Freelancer",
+      "location": "Online",
+      "period": "2022 – Current",
+      "description": [
+        "Worked directly with international clients to translate system requirements into hardware and firmware solutions.",
+        "Designed production-ready hardware including schematic capture, PCB layout, and manufacturing documentation.",
+        "Developed embedded applications for sensor systems, battery-powered devices, and robotics platforms.",
+        "Provided remote technical consultation and design recommendations."
+      ]
+    },
+    {
+      "company": "Ninja Management Co, LTD",
+      "role": "Embedded Engineer",
+      "location": "Bangkok, Thailand",
+      "period": "2025 – 2026",
+      "description": [
+        "Designed and validated multi-layer PCBs based on ESP32 MCUs, performing schematic review, signal integrity checks, and system-level debugging to ensure reliable integration.",
+        "Prepared complete manufacturing documentation (BOM, CPL, Gerber, assembly drawings, schematics).",
+        "Developed low-level firmware in C for ESP32 platforms, integrating multiple sensors and implementing efficient power management strategies.",
+        "Integrated hardware subsystems into final products, including PCB assembly, 3D-printed enclosures, switch integration, wiring harness design, and power distribution.",
+        "Conducted functional validation, electrical testing, and iterative design improvements to optimize performance, reliability, and manufacturability.",
+        "Created internal documentation and test procedures to support manufacturing and system validation."
+      ]
+    },
+    {
+      "company": "Robotics of Myanmar (ROM)",
+      "role": "Junior Robotic Developer",
+      "location": "Yangon, Myanmar",
+      "period": "2019 – 2022",
+      "description": [
+        "Developed and tested Slamware-based mobile robotic systems for indoor navigation.",
+        "Utilized Slamware SDK for localization and mapping integration.",
+        "Designed mechanical structures using SolidWorks and fabricated prototypes via CNC and 3D printing.",
+        "Supported system integration and validation testing."
+      ]
+    },
+    {
+      "company": "Robotics of Myanmar (ROM)",
+      "role": "Intern",
+      "location": "Yangon, Myanmar",
+      "period": "2018 – 2019",
+      "description": [
+        "Contributed to development of ROS-based mobile robotic platforms.",
+        "Implemented C++/Python nodes for sensor processing and motion control.",
+        "Applied SLAM and kinematic modeling for autonomous navigation tasks."
+      ]
     }
   ],
   "education": [
