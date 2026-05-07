@@ -1,19 +1,15 @@
 ---
-interface Props {
-    projects: any[];
-}
-const { projects } = Astro.props;
+// No props — placeholder card with no functionality yet
 ---
 
 <div
-    class="bento-card clickable col-span-1 flex flex-col items-center justify-center"
+    class="bento-card col-span-1 lg:col-span-1 flex flex-col items-center justify-center"
     style="flex: 1.5; background: linear-gradient(135deg, var(--card-bg), color-mix(in srgb, var(--accent) 15%, var(--card-bg)))"
-    @click="modal = 'projects'"
 >
     <p
         class="text-6xl font-bold text-(--accent)"
         style="font-family: 'Tangerine', cursive"
     >
-        Portfolio
+        Coming Soon
     </p>
 </div>

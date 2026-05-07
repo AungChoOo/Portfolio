@@ -15,7 +15,7 @@
 | SkillsCard | SkillsCard |
 | SkillsCard | SkillsCard |
 | ExperiencesCard | ExperiencesCard |
-| LiveCard | LiveCard |
+| DummyCard | DummyCard |
 | ProjectsCard | ProjectsCard |
 | ContactCard | ContactCard |
 | ContactCard | ContactCard |
@@ -28,6 +28,6 @@
 | HeroCard | HeroCard | HeroCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard |
 | HeroCard | HeroCard | HeroCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard |
 | HeroCard | HeroCard | HeroCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard | AboutmeCard |
-| SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | LiveCard | LiveCard | LiveCard | ContactCard | ContactCard | ContactCard |
+| SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | DummyCard | DummyCard | DummyCard | ContactCard | ContactCard | ContactCard |
 | SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | ExperiencesCard | ExperiencesCard | ExperiencesCard | ContactCard | ContactCard | ContactCard |
-| SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | ProjectsCard | ProjectsCard | ProjectsCard | DummyCard | DummyCard | DummyCard |
+| SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | SkillsCard | ProjectsCard | ProjectsCard | ProjectsCard | LiveCard | LiveCard | LiveCard |
