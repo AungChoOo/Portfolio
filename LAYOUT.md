@@ -30,15 +30,15 @@
 | SkillsCard | SkillsCard | SkillsCard | SkillsCard | ProjectsCard | ProjectsCard | ContactCard | ContactCard |
 
 # Issues
-## Current Mobile Layout (1 Column) Issues
+## Current actual mobile layout (not the layout from temp button)
 
 | | |
 |---|---|
 | HeroCard | HeroCard |
 | HeroCard | HeroCard |
-| SkillsCard | ProjectsCard |
-| SkillsCard | ProjectsCard |
-| SkillsCard | ProjectsCard |
-| LiveCard |
-| LiveCard |
-| LiveCard |
+| ProjectsCard | ContactCard |
+| ProjectsCard | ContactCard |
+| ProjectsCard | LiveCard |
+| ProjectsCard |
+| ProjectsCard |
+| ProjectsCard |
