@@ -7,7 +7,7 @@ import ContactCard from "../components/cards/ContactCard.astro";
 import LiveCard from "../components/cards/LiveCard.astro";
 import ProjectsCard from "../components/cards/ProjectsCard.astro";
 import ExperienceCard from "../components/cards/ExperienceCard.astro";
-import DummyCard from "../components/cards/DummyCard.astro";
+import RadioCard from "../components/cards/RadioCard.astro";
 import Icon from "../components/ui/Icon.astro";
 import portfolioData from "../data/portfolio.json";
 import { getCollection } from "astro:content";
@@ -46,9 +46,9 @@ const { personal, social, about, skills, experience } = portfolioData;
             <SkillsCard skills={skills} />
 
             <div class="col-span-1 lg:row-span-3 flex flex-col gap-3 lg:gap-4">
+                <RadioCard />
                 <ProjectsCard projects={sortedProjects} />
                 <ExperienceCard experiences={experience} />
-                <DummyCard />
             </div>
             <ContactCard
                 email={personal.email}
