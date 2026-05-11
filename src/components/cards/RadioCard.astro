@@ -312,8 +312,9 @@ const bars = [...bands].reverse().concat(bands);
             if (await tryPlay()) {
                 audioStarted = true;
                 setPlaying(true);
-                pendingFirstAction = () => {
+                pendingFirstAction = async () => {
                     audio.muted = false;
+                    await audio.play();
                     attachVisualizer();
                 };
             }
