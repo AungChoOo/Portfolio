@@ -42,7 +42,7 @@ const bars = [...bands].reverse().concat(bands);
                 <div
                     class="eq-bar playing w-1 rounded-full"
                     data-band={b.band}
-                    style={`--dur:${b.dur}s;--delay:${b.delay}s;--max-h:${b.maxH}%;background:var(--accent);height:2px`}
+                    style={`--dur:${b.dur}s;--delay:${b.delay}s;--max-h:${b.maxH}%;background:var(--accent);height:2px;opacity:0.6`}
                 ></div>
             ))}
         </div>
@@ -271,8 +271,8 @@ const bars = [...bands].reverse().concat(bands);
     let pendingFirstAction: (() => void | Promise<void>) | null = null;
 
     function consumePendingAction() {
-        document.removeEventListener('pointerdown', onAnyFirstInteraction);
-        document.removeEventListener('keydown', onAnyFirstInteraction);
+        document.removeEventListener('pointerdown', onAnyFirstInteraction, true);
+        document.removeEventListener('keydown', onAnyFirstInteraction, true);
         const action = pendingFirstAction;
         pendingFirstAction = null;
         action?.();
@@ -324,7 +324,7 @@ const bars = [...bands].reverse().concat(bands);
                 pendingFirstAction = () => { startAudio(); };
             }
         }
-        document.addEventListener('pointerdown', onAnyFirstInteraction);
-        document.addEventListener('keydown', onAnyFirstInteraction);
+        document.addEventListener('pointerdown', onAnyFirstInteraction, true);
+        document.addEventListener('keydown', onAnyFirstInteraction, true);
     })();
 </script>
