@@ -271,7 +271,7 @@ const bars = [...bands].reverse().concat(bands);
     let pendingFirstAction: (() => void | Promise<void>) | null = null;
 
     function consumePendingAction() {
-        document.removeEventListener('pointerdown', onAnyFirstInteraction, true);
+        document.removeEventListener('click', onAnyFirstInteraction, true);
         document.removeEventListener('keydown', onAnyFirstInteraction, true);
         const action = pendingFirstAction;
         pendingFirstAction = null;
@@ -279,7 +279,6 @@ const bars = [...bands].reverse().concat(bands);
     }
 
     function onAnyFirstInteraction(e: Event) {
-        // Defer to the button's own handler if the user clicked it directly.
         if (btn.contains(e.target as Node)) return;
         consumePendingAction();
     }
@@ -324,7 +323,7 @@ const bars = [...bands].reverse().concat(bands);
                 pendingFirstAction = () => { startAudio(); };
             }
         }
-        document.addEventListener('pointerdown', onAnyFirstInteraction, true);
+        document.addEventListener('click', onAnyFirstInteraction, true);
         document.addEventListener('keydown', onAnyFirstInteraction, true);
     })();
 </script>

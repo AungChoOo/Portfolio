@@ -301,7 +301,7 @@ const { personal, social, about, skills, experience } = portfolioData;
 
                     <div class="space-y-3 mb-6">
                         <button
-                            @click="navigator.clipboard.writeText(email); showToast('Copied email to clipboard')"
+                            @click.stop="navigator.clipboard.writeText(email); showToast('Copied email to clipboard')"
                             class="w-full flex items-center gap-3 p-3 bg-(--inner-bg) border border-(--card-border) rounded-xl hover:border-(--accent) transition-colors group cursor-pointer"
                         >
                             <div
@@ -341,7 +341,7 @@ const { personal, social, about, skills, experience } = portfolioData;
                             </div>
                         </button>
                         <button
-                            @click="navigator.clipboard.writeText(phone); showToast('Copied phone number to clipboard')"
+                            @click.stop="navigator.clipboard.writeText(phone); showToast('Copied phone number to clipboard')"
                             class="w-full flex items-center gap-3 p-3 bg-(--inner-bg) border border-(--card-border) rounded-xl hover:border-(--accent) transition-colors group cursor-pointer"
                         >
                             <div
