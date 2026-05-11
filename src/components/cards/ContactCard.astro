@@ -15,11 +15,11 @@ const { email, phone, social } = Astro.props;
 ---
 
 <div
-    class="bento-card clickable col-span-1 lg:row-span-2 lg:min-h-0 p-[clamp(0.75rem,2vh,1.5rem)] flex flex-col gap-[clamp(0.5rem,1.4vh,1rem)] min-h-[200px]"
+    class="bento-card clickable col-span-1 lg:row-span-2 lg:min-h-0 p-6 lg:p-[clamp(0.75rem,2vh,1.5rem)] flex flex-col justify-center gap-3 lg:gap-[clamp(0.5rem,1.4vh,1rem)] min-h-[200px]"
     @click="modal = 'contact'"
 >
     <div class="flex items-center justify-between">
-        <p class="text-sm text-(--accent) font-semibold uppercase tracking-wide">Get in touch</p>
+        <p class="text-sm lg:text-[clamp(0.7rem,3cqh,1rem)] text-(--accent) font-semibold uppercase tracking-wide">Get in touch</p>
         <svg
             width="11"
             height="11"
@@ -50,7 +50,7 @@ const { email, phone, social } = Astro.props;
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                 </svg>
             </div>
-            <span class="text-xs text-(--muted) truncate">{email}</span>
+            <span class="text-xs lg:text-[clamp(0.7rem,2.6cqh,0.95rem)] text-(--muted) truncate">{email}</span>
         </div>
 
         <div class="flex items-center gap-2.5">
@@ -70,7 +70,7 @@ const { email, phone, social } = Astro.props;
                     ></path>
                 </svg>
             </div>
-            <span class="text-xs text-(--muted2)">{phone}</span>
+            <span class="text-xs lg:text-[clamp(0.7rem,2.6cqh,0.95rem)] text-(--muted2)">{phone}</span>
         </div>
     </div>
 

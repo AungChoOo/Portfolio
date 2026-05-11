@@ -8,7 +8,7 @@ const { name, title, resumeUrl } = Astro.props;
 ---
 
 <div
-    class="bento-card clickable col-span-1 lg:col-span-3 lg:row-span-3 min-h-[260px] lg:min-h-0 relative p-[clamp(1rem,2.5vh,2rem)] flex flex-col justify-start"
+    class="bento-card clickable col-span-1 lg:col-span-3 lg:row-span-3 min-h-[260px] lg:min-h-0 relative p-6 lg:p-[clamp(1rem,5cqh,2.5rem)] flex flex-col justify-start"
     @click="modal = 'about'"
 >
     <div
@@ -17,7 +17,7 @@ const { name, title, resumeUrl } = Astro.props;
         <img
             src="/images/Robot.png"
             alt=""
-            class="absolute right-0 top-0 w-60 h-75 object-cover opacity-[0.5] scale-110"
+            class="absolute right-0 bottom-0 w-60 h-75 object-cover opacity-[0.5] scale-110"
             style="object-position: 0% center; transform: scaleX(-1)"
         />
         <div
@@ -28,12 +28,12 @@ const { name, title, resumeUrl } = Astro.props;
 
     <div class="relative z-10 text-left flex-1 flex flex-col justify-center">
         <h1
-            class="font-bold text-(--text) mb-2 leading-tight text-5xl lg:text-[clamp(2rem,5.5vh,3rem)]"
+            class="font-bold text-(--text) mb-2 leading-tight text-5xl lg:text-[clamp(2.5rem,18cqh,6rem)] lg:mb-[clamp(0.25rem,2cqh,1rem)]"
             style="font-family: 'Birthstone', cursive"
         >
             {name}
         </h1>
-        <p class="text-(--muted) -mb-4 text-lg lg:text-[clamp(0.9rem,1.8vh,1.125rem)]">{title}</p>
+        <p class="text-(--muted) -mb-4 lg:mb-0 text-lg lg:text-[clamp(0.9rem,3.5cqh,1.5rem)]">{title}</p>
     </div>
 
     <div class="relative z-10 flex gap-3 flex-wrap justify-start">
@@ -41,7 +41,7 @@ const { name, title, resumeUrl } = Astro.props;
             href={resumeUrl}
             target="_blank"
             rel="noopener"
-            class="px-5 py-2.5 bg-(--accent) text-black text-sm font-semibold rounded-lg hover:bg-(--accent-hover) transition-colors inline-block"
+            class="px-5 py-2.5 lg:px-[clamp(1rem,3cqw,1.75rem)] lg:py-[clamp(0.5rem,1.6cqh,0.9rem)] bg-(--accent) text-black text-sm lg:text-[clamp(0.8rem,2cqh,1.1rem)] font-semibold rounded-lg hover:bg-(--accent-hover) transition-colors inline-block"
         >
             View Resume
         </a>

@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Portfolio — Color Combinations</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --page-bg: #0a0a0b;
+                --page-ink: #e8e8ea;
+                --page-dim: #7a7a82;
+                --rule: rgba(255, 255, 255, 0.08);
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                background: var(--page-bg);
+                color: var(--page-ink);
+                font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            .wrap {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 48px 32px 80px;
+            }
+            .head {
+                margin-bottom: 48px;
+                border-bottom: 1px solid var(--rule);
+                padding-bottom: 24px;
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-between;
+                gap: 32px;
+                flex-wrap: wrap;
+            }
+            .head h1 {
+                font-size: 32px;
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                margin: 0 0 6px;
+            }
+            .head .sub {
+                color: var(--page-dim);
+                font-size: 14px;
+                line-height: 1.55;
+                max-width: 60ch;
+                margin: 0;
+            }
+            .head .meta {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 11px;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: var(--page-dim);
+                text-align: right;
+            }
+            .head .meta strong {
+                display: block;
+                color: var(--page-ink);
+                font-weight: 500;
+                margin-top: 4px;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+            @media (max-width: 980px) {
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            /* Each option card */
+            .opt {
+                --bg: #000;
+                --surface: #0f0f10;
+                --surface-2: #1a1a1c;
+                --ink: #fff;
+                --dim: #9a9a9a;
+                --accent: #1fd27a;
+                --accent-soft: rgba(31, 210, 122, 0.18);
+                border-radius: 14px;
+                overflow: hidden;
+                border: 1px solid var(--rule);
+                background: #0e0e10;
+            }
+            .opt-head {
+                padding: 18px 22px;
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 16px;
+                border-bottom: 1px solid var(--rule);
+            }
+            .opt-num {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 10px;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: var(--page-dim);
+                margin: 0 0 2px;
+            }
+            .opt-name {
+                font-size: 18px;
+                font-weight: 600;
+                letter-spacing: -0.01em;
+                margin: 0;
+            }
+            .opt-desc {
+                font-size: 12px;
+                line-height: 1.5;
+                color: var(--page-dim);
+                margin: 6px 0 0;
+                max-width: 48ch;
+            }
+
+            .swatches {
+                display: flex;
+                gap: 6px;
+                flex-shrink: 0;
+            }
+            .sw {
+                width: 28px;
+                height: 28px;
+                border-radius: 6px;
+                border: 1px solid rgba(255, 255, 255, 0.06);
+                cursor: pointer;
+                position: relative;
+            }
+            .sw:hover::after {
+                content: attr(data-hex);
+                position: absolute;
+                bottom: calc(100% + 6px);
+                right: 0;
+                font-family: "JetBrains Mono", monospace;
+                font-size: 10px;
+                background: #000;
+                color: #fff;
+                padding: 3px 7px;
+                border-radius: 4px;
+                white-space: nowrap;
+                letter-spacing: 0.04em;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            /* Bento mock */
+            .bento {
+                background: var(--bg);
+                padding: 18px;
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                grid-template-rows: auto auto;
+                gap: 12px;
+                color: var(--ink);
+                font-family: "Inter", sans-serif;
+            }
+            .b-card {
+                background: var(--surface);
+                border-radius: 12px;
+                padding: 18px;
+                border: 1px solid rgba(255, 255, 255, 0.04);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .b-hero {
+                grid-column: 1;
+                grid-row: 1;
+                min-height: 160px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            .b-hero h2 {
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: -0.01em;
+                margin: 0;
+                color: var(--ink);
+            }
+            .b-hero .role {
+                font-size: 11px;
+                color: var(--dim);
+                margin: 4px 0 0;
+                letter-spacing: 0.02em;
+            }
+            .b-hero .quote {
+                font-size: 11px;
+                color: var(--dim);
+                font-style: italic;
+                margin: 14px 0 0;
+            }
+            .b-hero .actions {
+                display: flex;
+                gap: 8px;
+                margin-top: 14px;
+            }
+            .b-hero .btn {
+                padding: 8px 14px;
+                border-radius: 8px;
+                background: var(--accent);
+                color: var(--bg);
+                font-size: 11px;
+                font-weight: 600;
+                border: 0;
+                letter-spacing: 0.02em;
+            }
+            .b-hero .btn.ghost {
+                background: transparent;
+                color: var(--ink);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+            }
+            .b-hero .gears {
+                position: absolute;
+                left: -20px;
+                top: -20px;
+                width: 140px;
+                height: 140px;
+                border-radius: 50%;
+                border: 18px solid var(--accent);
+                opacity: 0.15;
+            }
+            .b-hero .gears::after {
+                content: "";
+                position: absolute;
+                inset: 14px;
+                border-radius: 50%;
+                border: 10px solid var(--accent);
+                opacity: 0.6;
+            }
+
+            .b-photo {
+                grid-column: 2;
+                grid-row: 1 / span 2;
+                background: var(--surface);
+                border-radius: 12px;
+                border: 1px solid rgba(255, 255, 255, 0.04);
+                padding: 14px;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                min-height: 280px;
+                background-image:
+                    linear-gradient(
+                        180deg,
+                        transparent 50%,
+                        rgba(0, 0, 0, 0.4) 100%
+                    ),
+                    repeating-linear-gradient(
+                        135deg,
+                        var(--surface-2) 0 8px,
+                        var(--surface) 8px 14px
+                    );
+            }
+            .b-photo .tag {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 9px;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: var(--accent);
+                margin: 0 0 4px;
+            }
+            .b-photo .name {
+                font-size: 13px;
+                font-weight: 600;
+                color: var(--ink);
+                margin: 0;
+                letter-spacing: -0.01em;
+            }
+            .b-photo .role {
+                font-size: 11px;
+                color: var(--dim);
+                margin: 2px 0 0;
+            }
+
+            .b-skills {
+                grid-column: 1;
+                grid-row: 2;
+                padding: 18px;
+            }
+            .b-skills h3 {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 10px;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: var(--accent);
+                margin: 0 0 12px;
+            }
+            .b-skills .row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 14px 18px;
+                font-size: 11px;
+            }
+            .b-skills .skill .name {
+                color: var(--ink);
+                font-weight: 600;
+                letter-spacing: -0.005em;
+            }
+            .b-skills .skill .meta {
+                color: var(--dim);
+                font-size: 10px;
+                margin-top: 2px;
+                letter-spacing: 0.02em;
+            }
+
+            /* Hex chips below mock */
+            .opt-codes {
+                padding: 14px 22px 18px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                background: #0e0e10;
+                border-top: 1px solid var(--rule);
+            }
+            .code {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-family: "JetBrains Mono", monospace;
+                font-size: 10px;
+                color: var(--page-dim);
+                letter-spacing: 0.04em;
+                cursor: pointer;
+            }
+            .code .dot {
+                width: 14px;
+                height: 14px;
+                border-radius: 4px;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            .code:hover {
+                color: var(--page-ink);
+            }
+
+            .toast {
+                position: fixed;
+                bottom: 24px;
+                left: 50%;
+                transform: translateX(-50%) translateY(20px);
+                background: var(--page-ink);
+                color: var(--page-bg);
+                font-family: "JetBrains Mono", monospace;
+                font-size: 12px;
+                padding: 10px 18px;
+                border-radius: 999px;
+                opacity: 0;
+                transition: all 0.25s;
+                pointer-events: none;
+                letter-spacing: 0.04em;
+            }
+            .toast.show {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <header class="head">
+                <div>
+                    <h1>Color combinations for your portfolio</h1>
+                    <p class="sub">
+                        Six alternative color directions — none use white. Each
+                        palette uses a tinted cream / off-tone for text instead.
+                        Click any swatch or hex to copy.
+                    </p>
+                </div>
+                <div class="meta">
+                    <span>Set</span><strong>18 Options</strong>
+                </div>
+            </header>
+
+            <div class="grid" id="grid"></div>
+        </div>
+
+        <div class="toast" id="toast">Copied</div>
+
+        <script>
+            const options = [
+                {
+                    name: "Black · Gold · Cream",
+                    num: "01",
+                    desc: "Your current feel — warm gold on near-black, but with a soft cream replacing pure white. More refined, less clinical.",
+                    bg: "#0a0a0b",
+                    surface: "#141416",
+                    surface2: "#1f1f22",
+                    ink: "#ede4d0",
+                    dim: "#8a8278",
+                    accent: "#d4a24c",
+                },
+                {
+                    name: "Carbon · Cobalt · Mist",
+                    num: "02",
+                    desc: "Cool slate neutrals with an electric blue accent. Mist-blue text instead of white — modern, technical, engineered.",
+                    bg: "#0a0c0f",
+                    surface: "#13161b",
+                    surface2: "#1c2028",
+                    ink: "#cdd6e0",
+                    dim: "#7a8090",
+                    accent: "#3b82f6",
+                },
+                {
+                    name: "Onyx · Phosphor · Sage",
+                    num: "03",
+                    desc: "Pure black with a soft phosphor green. Sage-tinted text — feels like a CRT terminal in a calmer mood.",
+                    bg: "#08090a",
+                    surface: "#0f1311",
+                    surface2: "#172019",
+                    ink: "#bdd4c4",
+                    dim: "#7a8580",
+                    accent: "#3ecf8e",
+                },
+                {
+                    name: "Carbon · Cobalt · Twilight",
+                    num: "04",
+                    desc: "Cool slate neutrals with an electric blue accent. Twilight-blue text — modern, technical, engineered.",
+                    bg: "#0a0c0f",
+                    surface: "#13161b",
+                    surface2: "#1c2028",
+                    ink: "#d4dfe8",
+                    dim: "#7a8090",
+                    accent: "#1d4ed8",
+                },
+                {
+                    name: "Slate · Violet · Lilac",
+                    num: "05",
+                    desc: "Neutral graphite with a muted violet accent and lilac-tinted text. Distinctive but still restrained.",
+                    bg: "#0b0b0d",
+                    surface: "#151518",
+                    surface2: "#1e1d22",
+                    ink: "#d6d2dc",
+                    dim: "#7d7b84",
+                    accent: "#a78bfa",
+                },
+                {
+                    name: "Eclipse · Crimson · Rose",
+                    num: "06",
+                    desc: "Near-pure black with a confident signal-red and warm rose-tinted text. Bold and high-energy.",
+                    bg: "#08090a",
+                    surface: "#121214",
+                    surface2: "#1c1c1f",
+                    ink: "#e8d8d6",
+                    dim: "#857d7d",
+                    accent: "#ef4444",
+                },
+                {
+                    name: "Midnight · Teal · Foam",
+                    num: "07",
+                    desc: "Deep ink-black with a calm teal accent and foam-tinted text. Quiet and assured.",
+                    bg: "#0a0d0e",
+                    surface: "#13181a",
+                    surface2: "#1c2326",
+                    ink: "#c8d8d6",
+                    dim: "#7a8888",
+                    accent: "#2dd4bf",
+                },
+                {
+                    name: "Coal · Amber · Wheat",
+                    num: "08",
+                    desc: "Pure coal with a warm amber accent and wheat-tinted text. Rich and grounded.",
+                    bg: "#0a0908",
+                    surface: "#161412",
+                    surface2: "#211e1a",
+                    ink: "#dccfa8",
+                    dim: "#857c66",
+                    accent: "#f59e0b",
+                },
+                {
+                    name: "Graphite · Cyan · Ice",
+                    num: "09",
+                    desc: "Cool graphite with an icy cyan accent and pale-blue text. Crisp and clean.",
+                    bg: "#0a0c0d",
+                    surface: "#13181a",
+                    surface2: "#1d2326",
+                    ink: "#c4d6dc",
+                    dim: "#7a868d",
+                    accent: "#22d3ee",
+                },
+                {
+                    name: "Ink · Lime · Pistachio",
+                    num: "10",
+                    desc: "Warm-leaning dark with an acid lime accent and pistachio text. Bold and modern.",
+                    bg: "#0b0c08",
+                    surface: "#15170f",
+                    surface2: "#1f2218",
+                    ink: "#cfd8b4",
+                    dim: "#7e8568",
+                    accent: "#a3e635",
+                },
+                {
+                    name: "Midnight · Teal · Dew",
+                    num: "11",
+                    desc: "Deep ink-black with a calm teal accent and dew-tinted text. Quiet and assured.",
+                    bg: "#0a0d0e",
+                    surface: "#13181a",
+                    surface2: "#1c2326",
+                    ink: "#d0e0dd",
+                    dim: "#7a8888",
+                    accent: "#14b8a6",
+                },
+                {
+                    name: "Slate · Indigo · Periwinkle",
+                    num: "12",
+                    desc: "Cool slate with a deep indigo accent and periwinkle text. Calm, technical, premium.",
+                    bg: "#0a0b10",
+                    surface: "#13141c",
+                    surface2: "#1c1e28",
+                    ink: "#cdd0e4",
+                    dim: "#787a8a",
+                    accent: "#6366f1",
+                },
+                {
+                    name: "Coal · Amber · Toast",
+                    num: "13",
+                    desc: "Pure coal with a warm amber accent and toast-tinted text. Rich and grounded.",
+                    bg: "#0a0908",
+                    surface: "#161412",
+                    surface2: "#211e1a",
+                    ink: "#dccfa8",
+                    dim: "#857c66",
+                    accent: "#f59e0b",
+                },
+                {
+                    name: "Pine · Sage · Linen",
+                    num: "14",
+                    desc: "Deep forest green with sage accent and warm linen text. Quiet, mature, organic.",
+                    bg: "#0a100d",
+                    surface: "#131a16",
+                    surface2: "#1c2520",
+                    ink: "#e1dccd",
+                    dim: "#7a8079",
+                    accent: "#8aab87",
+                },
+                {
+                    name: "Graphite · Cyan · Sky",
+                    num: "15",
+                    desc: "Cool graphite with an icy cyan accent and sky-blue text. Crisp and clean.",
+                    bg: "#0a0c0d",
+                    surface: "#13181a",
+                    surface2: "#1d2326",
+                    ink: "#d8e5f0",
+                    dim: "#7a868d",
+                    accent: "#06b6d4",
+                },
+                {
+                    name: "Storm · Lilac · Mist",
+                    num: "16",
+                    desc: "Cool stormy charcoal with soft lilac and misty text. Calm, restrained, slightly futuristic.",
+                    bg: "#0c0d11",
+                    surface: "#16171c",
+                    surface2: "#1f2027",
+                    ink: "#dadbe6",
+                    dim: "#7e8090",
+                    accent: "#b09dd8",
+                },
+                {
+                    name: "Ink · Lime · Chartreuse",
+                    num: "17",
+                    desc: "Warm-leaning dark with an acid lime accent and chartreuse text. Bold and modern.",
+                    bg: "#0b0c08",
+                    surface: "#15170f",
+                    surface2: "#1f2218",
+                    ink: "#dfe8b8",
+                    dim: "#7e8568",
+                    accent: "#bef264",
+                },
+                {
+                    name: "Charcoal · Brass · Putty",
+                    num: "18",
+                    desc: "True charcoal with a muted brass accent and putty text. A quieter take on black-and-gold.",
+                    bg: "#0c0c0c",
+                    surface: "#171716",
+                    surface2: "#21211f",
+                    ink: "#dccfb6",
+                    dim: "#85807a",
+                    accent: "#b48a4a",
+                },
+            ];
+
+            const grid = document.getElementById("grid");
+            const toast = document.getElementById("toast");
+
+            function copy(text) {
+                navigator.clipboard
+                    .writeText(text)
+                    .then(() => {
+                        toast.textContent = `Copied ${text}`;
+                        toast.classList.add("show");
+                        clearTimeout(window.__t);
+                        window.__t = setTimeout(
+                            () => toast.classList.remove("show"),
+                            1200,
+                        );
+                    })
+                    .catch(() => {});
+            }
+
+            options.forEach((o) => {
+                const card = document.createElement("div");
+                card.className = "opt";
+                card.style.setProperty("--bg", o.bg);
+                card.style.setProperty("--surface", o.surface);
+                card.style.setProperty("--surface-2", o.surface2);
+                card.style.setProperty("--ink", o.ink);
+                card.style.setProperty("--dim", o.dim);
+                card.style.setProperty("--accent", o.accent);
+
+                const codes = [
+                    { label: "BG", hex: o.bg },
+                    { label: "SURFACE", hex: o.surface },
+                    { label: "INK", hex: o.ink },
+                    { label: "DIM", hex: o.dim },
+                    { label: "ACCENT", hex: o.accent },
+                ];
+
+                card.innerHTML = `
+    <div class="opt-head">
+      <div>
+        <p class="opt-num">Option ${o.num}</p>
+        <h3 class="opt-name">${o.name}</h3>
+        <p class="opt-desc">${o.desc}</p>
+      </div>
+      <div class="swatches">
+        ${codes.map((c) => `<div class="sw" data-hex="${c.hex.toUpperCase()}" style="background:${c.hex}"></div>`).join("")}
+      </div>
+    </div>
+
+    <div class="bento">
+      <div class="b-card b-hero">
+        <div class="gears"></div>
+        <div style="position:relative;z-index:1">
+          <h2>Aung Cho Oo</h2>
+          <p class="role">Robotics &amp; Embedded Engineer</p>
+          <p class="quote">"Pleasure in the job puts perfection in the work."</p>
+        </div>
+        <div class="actions" style="position:relative;z-index:1">
+          <button class="btn">View Resume</button>
+          <button class="btn ghost">Get in Touch</button>
+        </div>
+      </div>
+      <div class="b-photo">
+        <p class="tag">About</p>
+        <p class="name">Aung Cho Oo</p>
+        <p class="role">Robotics &amp; Embedded Engineer</p>
+      </div>
+      <div class="b-card b-skills">
+        <h3>What I can do</h3>
+        <div class="row">
+          <div class="skill"><div class="name">Embedded Programming</div><div class="meta">C, C++, Python</div></div>
+          <div class="skill"><div class="name">Hardware Design</div><div class="meta">Schematics, PCB</div></div>
+          <div class="skill"><div class="name">Robotics</div><div class="meta">Kinematics, SLAM</div></div>
+          <div class="skill"><div class="name">Protocols</div><div class="meta">I2C, SPI, UART, CAN</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="opt-codes">
+      ${codes
+          .map(
+              (c) => `
+        <div class="code" data-hex="${c.hex.toUpperCase()}">
+          <span class="dot" style="background:${c.hex}"></span>
+          <span>${c.label} ${c.hex.toUpperCase()}</span>
+        </div>
+      `,
+          )
+          .join("")}
+    </div>
+  `;
+
+                card.querySelectorAll("[data-hex]").forEach((el) => {
+                    el.addEventListener("click", () => copy(el.dataset.hex));
+                });
+
+                grid.appendChild(card);
+            });
+        </script>
+    </body>
+</html>

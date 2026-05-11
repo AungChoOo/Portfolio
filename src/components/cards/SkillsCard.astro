@@ -41,22 +41,22 @@ const brandColors: Record<string, string> = {
 ---
 
 <div
-    class="bento-card clickable col-span-1 lg:col-span-2 lg:row-span-3 lg:min-h-0 p-6 lg:p-[clamp(0.75rem,2vh,1.5rem)] flex flex-col gap-3 lg:gap-[clamp(0.5rem,1.4vh,1rem)] overflow-hidden"
+    class="bento-card clickable col-span-1 lg:col-span-2 lg:row-span-3 lg:min-h-0 p-6 lg:p-[clamp(1rem,3cqh,1.75rem)] flex flex-col justify-between gap-3 lg:gap-[clamp(0.5rem,2cqh,1.25rem)] overflow-hidden"
     @click="modal = 'skills'"
 >
-    <div class="space-y-3">
-        <p class="text-base text-(--accent) font-semibold">What I can do</p>
-        <div class="grid grid-cols-2 gap-x-4 gap-y-3">
+    <div class="space-y-3 lg:space-y-[clamp(0.5rem,1.6cqh,1rem)]">
+        <p class="text-base lg:text-[clamp(0.85rem,2.4cqh,1.25rem)] text-(--accent) font-semibold">What I can do</p>
+        <div class="grid grid-cols-2 gap-x-4 gap-y-3 lg:gap-y-[clamp(0.4rem,1.4cqh,0.9rem)]">
             {
                 skillItems.map((skill) => {
                     const parsed = parseSkill(skill.name);
                     return (
                         <div class="group cursor-default hover:opacity-100 opacity-90 transition-opacity">
-                            <p class="text-sm text-(--text) font-medium leading-tight">
+                            <p class="text-sm lg:text-[clamp(0.75rem,2cqh,1.05rem)] text-(--text) font-medium leading-tight">
                                 {parsed.main}
                             </p>
                             {parsed.sub && (
-                                <p class="text-[12px] text-(--muted2) mt-1 ml-0 leading-tight">
+                                <p class="text-[12px] lg:text-[clamp(0.65rem,1.5cqh,0.85rem)] text-(--muted2) mt-1 ml-0 leading-tight">
                                     {parsed.sub}
                                 </p>
                             )}
@@ -69,8 +69,8 @@ const brandColors: Record<string, string> = {
 
     <div class="h-px bg-gradient-to-r from-transparent via-(--card-border) to-transparent" />
 
-    <div class="space-y-3">
-        <p class="text-base text-(--accent) font-semibold">What I use</p>
+    <div class="space-y-3 lg:space-y-[clamp(0.5rem,1.6cqh,1rem)]">
+        <p class="text-base lg:text-[clamp(0.85rem,2.4cqh,1.25rem)] text-(--accent) font-semibold">What I use</p>
 
         <div class="marquee-wrap overflow-hidden -mx-6 px-0 mt-2">
             <div

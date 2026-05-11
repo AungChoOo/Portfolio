@@ -46,6 +46,14 @@ code, pre, .font-mono {
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
+/* Desktop: make each card a container so child text/spacing can scale
+   with the card's own dimensions via cqh/cqw units. */
+@media (min-width: 1024px) {
+  .bento-card {
+    container-type: size;
+  }
+}
+
 .bento-card.clickable {
   cursor: pointer;
 }
