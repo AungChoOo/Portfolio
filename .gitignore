@@ -8,7 +8,7 @@ node_modules/
 dist/
 
 # Root images folder (use public/images instead)
-images/
+/images/
 
 # Environment variables
 .env
