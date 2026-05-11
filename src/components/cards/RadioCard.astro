@@ -1,22 +1,22 @@
 ---
 const station = {
-    name: "Groove Salad",
-    url:  "https://ice1.somafm.com/groovesalad-128-mp3",
+    name: "Lo-Fi",
+    url:  "https://lofi.stream.laut.fm/lofi",
 };
 
 const bands = Array.from({ length: 16 }, (_, i) => ({
     band: i,
     dur:  (0.55 + Math.abs(Math.sin(i * 1.3)) * 0.55).toFixed(2),
     delay:(Math.abs(Math.cos(i * 0.9)) * 0.65).toFixed(2),
-    maxH: Math.round(45 + Math.abs(Math.sin(i * 0.8 + 0.5)) * 45),
+    maxH: Math.round(30 + Math.abs(Math.sin(i * 0.8 + 0.5)) * 35),
 }));
 
 const bars = [...bands].reverse().concat(bands);
 ---
 
 <div
-    class="bento-card col-span-1 lg:col-span-1 flex flex-row items-stretch p-4 gap-3"
-    style="flex: 1; background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('/images/music.jpg') center/cover no-repeat"
+    class="bento-card col-span-1 lg:col-span-1 lg:min-h-0 flex flex-row items-stretch p-4 lg:p-[clamp(0.5rem,1.2vh,1rem)] gap-3 radio-card"
+    style="flex: 1; position: relative"
 >
     <div class="flex flex-col items-center justify-center">
         <button
@@ -26,31 +26,33 @@ const bars = [...bands].reverse().concat(bands);
             class="p-2 rounded-full transition-colors cursor-pointer"
             style="color:var(--accent)"
         >
-            <svg data-icon-muted width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
-                <path d="M9 9L19.5 6M19.5 12.5528V16.3028C19.5 17.3074 18.834 18.1903 17.8681 18.4663L16.5481 18.8434C15.3964 19.1724 14.25 18.3077 14.25 17.1099C14.25 16.305 14.7836 15.5975 15.5576 15.3764L17.8681 14.7163C18.834 14.4403 19.5 13.5574 19.5 12.5528ZM19.5 12.5528V2.25L9 5.25V15.5528M9 15.5528V19.3028C9 20.3074 8.33405 21.1903 7.36812 21.4663L6.04814 21.8434C4.89645 22.1724 3.75 21.3077 3.75 20.1099C3.75 19.305 4.2836 18.5975 5.05757 18.3764L7.36812 17.7163C8.33405 17.4403 9 16.5574 9 15.5528Z"/>
-                <line x1="3" y1="21" x2="21" y2="3"/>
-            </svg>
-            <svg data-icon-playing width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="spin-playing">
-                <path d="M9 9L19.5 6M19.5 12.5528V16.3028C19.5 17.3074 18.834 18.1903 17.8681 18.4663L16.5481 18.8434C15.3964 19.1724 14.25 18.3077 14.25 17.1099C14.25 16.305 14.7836 15.5975 15.5576 15.3764L17.8681 14.7163C18.834 14.4403 19.5 13.5574 19.5 12.5528ZM19.5 12.5528V2.25L9 5.25V15.5528M9 15.5528V19.3028C9 20.3074 8.33405 21.1903 7.36812 21.4663L6.04814 21.8434C4.89645 22.1724 3.75 21.3077 3.75 20.1099C3.75 19.305 4.2836 18.5975 5.05757 18.3764L7.36812 17.7163C8.33405 17.4403 9 16.5574 9 15.5528Z"/>
-            </svg>
+            <span data-icon-muted class="clef-icon" style="display:none; position:relative;">
+                𝄞
+                <svg class="clef-slash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                    <line x1="3" y1="21" x2="21" y2="3"/>
+                </svg>
+            </span>
+            <span data-icon-playing class="clef-icon spin-playing">𝄞</span>
         </button>
     </div>
 
-    <div class="flex-1 flex flex-col gap-1 min-w-0">
-        <p
-            class="text-[9px] uppercase tracking-widest truncate"
-            style="color:var(--muted2)"
-        >{station.name}</p>
-
+    <div class="flex-1 flex flex-col gap-1.5 min-w-0">
         <div class="flex-1 flex items-end justify-between gap-0.5 min-w-0">
             {bars.map(b => (
                 <div
                     class="eq-bar playing w-1 rounded-full"
                     data-band={b.band}
-                    style={`--dur:${b.dur}s;--delay:${b.delay}s;--max-h:${b.maxH}%;background:var(--accent);height:4px`}
+                    style={`--dur:${b.dur}s;--delay:${b.delay}s;--max-h:${b.maxH}%;background:var(--accent);height:2px`}
                 ></div>
             ))}
         </div>
+        <input
+            type="range"
+            data-volume
+            min="0" max="1" step="0.02" value="0.5"
+            class="volume-slider"
+            aria-label="Volume"
+        />
     </div>
 
     <audio
@@ -62,8 +64,68 @@ const bars = [...bands].reverse().concat(bands);
 </div>
 
 <style>
+    .radio-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('/images/Music.jpg') center/cover no-repeat;
+        border-radius: 1rem;
+        pointer-events: none;
+    }
+
+    .radio-card > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .clef-icon {
+        display: inline-block;
+        font-size: 2rem;
+        font-family: 'Segoe UI Symbol', Georgia, 'Times New Roman', serif;
+        line-height: 1;
+        width: 2rem;
+        text-align: center;
+    }
+    .clef-slash {
+        position: absolute;
+        inset: -4px;
+        width: calc(100% + 8px);
+        height: calc(100% + 8px);
+        pointer-events: none;
+    }
+
+    .volume-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background: var(--inner-bg);
+        outline: none;
+        cursor: pointer;
+    }
+    .volume-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        cursor: pointer;
+        transition: transform 0.15s ease;
+    }
+    .volume-slider::-moz-range-thumb {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: none;
+        background: var(--accent);
+        cursor: pointer;
+    }
+    .volume-slider::-webkit-slider-thumb:hover { transform: scale(1.4); }
+
     @keyframes eq {
-        0%, 100% { height: 4px; }
+        0%, 100% { height: 2px; }
         50%       { height: var(--max-h); }
     }
     .eq-bar.playing {
@@ -93,11 +155,17 @@ const bars = [...bands].reverse().concat(bands);
 </style>
 
 <script>
-    const btn         = document.querySelector('[data-radio-btn]') as HTMLButtonElement;
-    const audio       = document.querySelector('[data-radio-audio]') as HTMLAudioElement;
-    const bars        = document.querySelectorAll<HTMLElement>('.eq-bar');
-    const iconMuted   = document.querySelector('[data-icon-muted]') as SVGElement;
-    const iconPlaying = document.querySelector('[data-icon-playing]') as SVGElement;
+    const btn          = document.querySelector('[data-radio-btn]') as HTMLButtonElement;
+    const audio        = document.querySelector('[data-radio-audio]') as HTMLAudioElement;
+    const bars         = document.querySelectorAll<HTMLElement>('.eq-bar');
+    const iconMuted    = document.querySelector('[data-icon-muted]') as HTMLElement;
+    const iconPlaying  = document.querySelector('[data-icon-playing]') as HTMLElement;
+    const volumeSlider = document.querySelector('[data-volume]') as HTMLInputElement;
+
+    audio.volume = 0.5;
+    volumeSlider.addEventListener('input', () => {
+        audio.volume = parseFloat(volumeSlider.value);
+    });
 
     let ctx: AudioContext | null = null;
     let analyser: AnalyserNode | null = null;
@@ -115,7 +183,7 @@ const bars = [...bands].reverse().concat(bands);
         bars.forEach((bar) => {
             const band = parseInt(bar.dataset.band || '0', 10);
             const val = data[band * step] / 255;
-            bar.style.height = Math.max(4, val * bar.parentElement!.clientHeight * 0.95) + 'px';
+            bar.style.height = Math.max(2, val * bar.parentElement!.clientHeight * 0.95) + 'px';
         });
         raf = requestAnimationFrame(animateAnalyser);
     }
@@ -148,44 +216,78 @@ const bars = [...bands].reverse().concat(bands);
             cancelAnimationFrame(raf);
             bars.forEach(b => {
                 b.classList.remove('playing');
-                b.style.height = '4px';
+                b.style.height = '2px';
             });
         }
     }
 
-    async function initAudioContext() {
-        if (ctx) return;
-        ctx = new AudioContext();
-        analyser = ctx.createAnalyser();
-        analyser.fftSize = 64;
-        analyser.smoothingTimeConstant = 0.8;
+    // Set up Web Audio for the analyser. MUST only be called from a user
+    // gesture — otherwise the AudioContext is created in 'suspended' state and
+    // MediaElementSource bypasses the audio element's native output, silencing
+    // playback. Bars fall back to CSS animation until this runs.
+    async function attachVisualizer() {
+        if (ctx) {
+            if (ctx.state === 'suspended') await ctx.resume();
+            return;
+        }
         try {
+            ctx = new AudioContext();
+            if (ctx.state === 'suspended') await ctx.resume();
+            analyser = ctx.createAnalyser();
+            analyser.fftSize = 64;
+            analyser.smoothingTimeConstant = 0.8;
             const source = ctx.createMediaElementSource(audio);
             source.connect(analyser);
             analyser.connect(ctx.destination);
             webAudio = true;
+            if (playing) {
+                bars.forEach(b => b.classList.remove('playing'));
+                animateAnalyser();
+            }
         } catch {
             webAudio = false;
         }
     }
 
-    async function startAudio() {
-        await initAudioContext();
-        if (ctx!.state === 'suspended') await ctx!.resume();
+    async function tryPlay() {
         try {
             await audio.play();
-            audioStarted = true;
-            setPlaying(true);
             return true;
         } catch {
             return false;
         }
     }
 
+    async function startAudio() {
+        if (!(await tryPlay())) return false;
+        audioStarted = true;
+        setPlaying(true);
+        await attachVisualizer();
+        return true;
+    }
+
+    // Pending action to run on the user's first interaction, if the radio
+    // isn't fully running with sound + analyser yet on load.
+    let pendingFirstAction: (() => void | Promise<void>) | null = null;
+
+    function consumePendingAction() {
+        document.removeEventListener('pointerdown', onAnyFirstInteraction);
+        document.removeEventListener('keydown', onAnyFirstInteraction);
+        const action = pendingFirstAction;
+        pendingFirstAction = null;
+        action?.();
+    }
+
+    function onAnyFirstInteraction(e: Event) {
+        // Defer to the button's own handler if the user clicked it directly.
+        if (btn.contains(e.target as Node)) return;
+        consumePendingAction();
+    }
+
     btn.addEventListener('click', async () => {
         triggerClickBounce();
-        if (!audioStarted) {
-            await startAudio();
+        if (pendingFirstAction) {
+            consumePendingAction();
             return;
         }
         if (playing) {
@@ -196,15 +298,32 @@ const bars = [...bands].reverse().concat(bands);
         }
     });
 
-    // Try autoplay on load; if blocked, start on first user interaction anywhere.
     (async () => {
-        if (await startAudio()) return;
-        const onFirstInteraction = async () => {
-            document.removeEventListener('pointerdown', onFirstInteraction);
-            document.removeEventListener('keydown', onFirstInteraction);
-            await startAudio();
-        };
-        document.addEventListener('pointerdown', onFirstInteraction, { once: true });
-        document.addEventListener('keydown', onFirstInteraction, { once: true });
+        // 1. Try plain autoplay first (works on revisits with browser engagement).
+        if (await tryPlay()) {
+            audioStarted = true;
+            setPlaying(true);
+            // Web Audio needs a user gesture; defer the visualizer hookup.
+            pendingFirstAction = () => { attachVisualizer(); };
+        }
+        // 2. Try muted autoplay (browsers always allow this).
+        else {
+            audio.muted = true;
+            if (await tryPlay()) {
+                audioStarted = true;
+                setPlaying(true);
+                pendingFirstAction = () => {
+                    audio.muted = false;
+                    attachVisualizer();
+                };
+            }
+            // 3. Everything blocked — start unmuted on first interaction.
+            else {
+                audio.muted = false;
+                pendingFirstAction = () => { startAudio(); };
+            }
+        }
+        document.addEventListener('pointerdown', onAnyFirstInteraction);
+        document.addEventListener('keydown', onAnyFirstInteraction);
     })();
 </script>

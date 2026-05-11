@@ -8,8 +8,7 @@ const { name, title, resumeUrl } = Astro.props;
 ---
 
 <div
-    class="bento-card clickable col-span-1 lg:col-span-3 lg:row-span-3 relative p-8 flex flex-col justify-start"
-    style="min-height: 260px"
+    class="bento-card clickable col-span-1 lg:col-span-3 lg:row-span-3 min-h-[260px] lg:min-h-0 relative p-[clamp(1rem,2.5vh,2rem)] flex flex-col justify-start"
     @click="modal = 'about'"
 >
     <div
@@ -29,12 +28,12 @@ const { name, title, resumeUrl } = Astro.props;
 
     <div class="relative z-10 text-left flex-1 flex flex-col justify-center">
         <h1
-            class="text-5xl font-bold text-(--text) mb-2 leading-tight"
+            class="font-bold text-(--text) mb-2 leading-tight text-5xl lg:text-[clamp(2rem,5.5vh,3rem)]"
             style="font-family: 'Birthstone', cursive"
         >
             {name}
         </h1>
-        <p class="text-lg text-(--muted) -mb-4">{title}</p>
+        <p class="text-(--muted) -mb-4 text-lg lg:text-[clamp(0.9rem,1.8vh,1.125rem)]">{title}</p>
     </div>
 
     <div class="relative z-10 flex gap-3 flex-wrap justify-start">

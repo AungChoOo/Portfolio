@@ -6,12 +6,12 @@ const { experiences } = Astro.props;
 ---
 
 <div
-    class="bento-card clickable col-span-1 flex flex-col items-center justify-center"
+    class="bento-card clickable col-span-1 lg:min-h-0 flex flex-col items-center justify-center overflow-hidden"
     style="flex: 1.5; background: linear-gradient(135deg, var(--card-bg), color-mix(in srgb, var(--accent) 15%, var(--card-bg)))"
     @click="modal = 'experience'"
 >
     <p
-        class="text-6xl font-bold text-(--accent)"
+        class="font-bold text-(--accent) text-6xl lg:text-[clamp(2.25rem,7vh,3.75rem)] leading-none"
         style="font-family: 'Tangerine', cursive"
     >
         Experiences

@@ -2,7 +2,6 @@
   "personal": {
     "name": "Aung Cho Oo",
     "title": "Robotics & Embedded Engineer",
-    "tagline": "Pleasure in the job puts perfection in the work.",
     "email": "aungchooo258@gmail.com",
     "phone": "+66640154846",
     "resumeUrl": "https://rxresu.me/aungchooo258/aungchooo"
@@ -35,8 +34,7 @@
     }
   ],
   "about": {
-    "description": "I grew up taking things apart to understand them. Now I build them from scratch. Embedded systems, robotics, AI — not as buzzwords, but as tools for making things that actually work in the real world. Still learning. Still building. Always curious.",
-    "profileImage": "/images/Profile.png"
+    "description": "I grew up taking things apart to understand them. Now I build them from scratch. Embedded systems, robotics, AI — not as buzzwords, but as tools for making things that actually work in the real world. Still learning. Still building. Always curious."
   },
   "skills": [
     { "name": "Embedded Programming (C, C++, Python, Verilog, VHDL)", "category": "skills" },
@@ -74,72 +72,6 @@
     { "name": "Notion", "category": "tools", "icon": "notion" },
     { "name": "GitHub", "category": "tools", "icon": "github" },
     { "name": "ROS2", "category": "tools", "icon": "ros" }
-  ],
-  "projects": [
-    {
-      "title": "Multi-Sensor Modules",
-      "description": "Breadboard compatible 13 in 1 multi-sensor module. 6dof IMU + 3dof Magnetometer + 4 Gas sensors. Three different IC from Bosch Sensortec including BMI088, BMM150 and BME680.",
-      "image": "/images/Multi-Sensor.png",
-      "tech": ["ESP32", "Bosch Sensors", "I2C", "PCB Design"],
-      "link": "https://github.com/AungChoOo/Multi-Sensor"
-    },
-    {
-      "title": "Slamware Mobile Robot",
-      "description": "Autonomous mobile robot which can mapping the environment(indoor), localize its own position and move freely to desired location. In this project, we, the team of ROM Robotics, used ROS and Slamware technology.",
-      "image": "/images/Mobile_robot.jpg",
-      "tech": ["ROS", "Slamware", "LIDAR", "Autonomous Navigation"],
-      "link": "https://github.com/AungChoOo/slamtec-dev-team"
-    },
-    {
-      "title": "Esp32 Display Module",
-      "description": "Custom Esp32 microcontroller with ZIF connector for a display. On board battery management system including battery charger, power path and protection function.",
-      "image": "/images/Esp32.jpg",
-      "tech": ["ESP32", "Battery Management", "PCB Design", "ZIF Connector"]
-    },
-    {
-      "title": "Class D Amplifier",
-      "description": "Class D Amplifier for mono speaker. NE5332ADR is used for Preamp and TPA31T2D1PWPR for Power amp. The board is specifically made for the guitar.",
-      "image": "/images/Class_D_amp.jpg",
-      "tech": [
-        "Class D Amplifier",
-        "PCB Design",
-        "Audio Electronics",
-        "Guitar Amp"
-      ]
-    },
-    {
-      "title": "Shadow Head",
-      "description": "Robot Head that can mimic positions of human's head in 3-axis. In this project, I modified the design of James Bruton's robot eye and remove the eyes.",
-      "image": "/images/Shadow_head.jpg",
-      "tech": ["Servo Control", "3D Printing", "Arduino", "Inverse Kinematics"],
-      "link": "https://github.com/AungChoOo/Shadow_Head"
-    },
-    {
-      "title": "Cycloidal Equation Generator",
-      "description": "Application to generate the essential equation to draw Cycloidal in Solidworks. I wrote this app with pyQT.",
-      "image": "/images/Robot.png",
-      "tech": ["Python", "PyQt", "Mathematics", "SolidWorks"],
-      "link": "https://github.com/AungChoOo/Cycloidal_Equation_Generator"
-    },
-    {
-      "title": "Robot Arm",
-      "description": "Robot Arm with wireless controller. The main function of the robot arm is that it can save the positions user moved and repeat that positions anytime user wants.",
-      "image": "/images/robot_arm.jpg",
-      "tech": [
-        "Servo Control",
-        "Wireless Communication",
-        "Arduino",
-        "Position Recording"
-      ],
-      "link": "https://github.com/AungChoOo/Robot_arm_with_wireless_controller"
-    },
-    {
-      "title": "Auto Planting",
-      "description": "A machine that can perform the tasks of seeding and watering automatically.",
-      "image": "/images/auto_planting.jpg",
-      "tech": ["Automation", "Agriculture", "Sensors", "Actuators"],
-      "link": "https://github.com/AungChoOo/Auto_planting"
-    }
   ],
   "experience": [
     {
@@ -190,14 +122,6 @@
         "Implemented C++/Python nodes for sensor processing and motion control.",
         "Applied SLAM and kinematic modeling for autonomous navigation tasks."
       ]
-    }
-  ],
-  "education": [
-    {
-      "degree": "Electronics Engineering",
-      "institution": "University of Technology",
-      "period": "Present",
-      "description": "Specializing in embedded systems and robotics."
     }
   ]
 }
