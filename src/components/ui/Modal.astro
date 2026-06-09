@@ -1,0 +1,38 @@
+---
+// Shared modal shell. Shown when the root Alpine `modal` state equals `name`;
+// the backdrop and Escape handling live in index.astro.
+interface Props {
+    name: string;
+    width?: string;
+    eyebrow?: string;
+    heading?: string;
+}
+const { name, width = "md:max-w-xl", eyebrow, heading } = Astro.props;
+---
+
+<div
+    x-show={`modal === '${name}'`}
+    class:list={[
+        "relative bg-(--card-bg) border border-(--card-border) rounded-2xl w-full max-w-sm my-auto",
+        width,
+    ]}
+>
+    <button
+        @click="modal = null"
+        class="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-(--inner-bg) border border-(--dim-border) text-(--muted) hover:text-white flex items-center justify-center text-xl leading-none transition-colors"
+        >&times;</button
+    >
+    <div class="p-6 md:p-8">
+        {eyebrow && (
+            <p class="text-[10px] text-(--accent) font-mono uppercase tracking-widest mb-1">
+                {eyebrow}
+            </p>
+        )}
+        {heading && (
+            <h2 class="text-lg md:text-xl font-bold text-white mb-6">
+                {heading}
+            </h2>
+        )}
+        <slot />
+    </div>
+</div>

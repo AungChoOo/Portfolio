@@ -6,7 +6,7 @@ const { name } = Astro.props;
 ---
 
 <div
-    class="profile-circle col-span-1 lg:row-span-3 relative overflow-hidden group aspect-square"
+    class="rounded-full col-span-1 lg:row-span-3 relative overflow-hidden group aspect-square"
     style="border: 1px solid var(--card-border); background: var(--bg);"
 >
     <img
@@ -17,9 +17,3 @@ const { name } = Astro.props;
     />
     <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
 </div>
-
-<style is:global>
-    .profile-circle {
-        border-radius: 50%;
-    }
-</style>

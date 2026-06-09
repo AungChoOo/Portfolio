@@ -172,7 +172,6 @@ const bars = [...bands].reverse().concat(bands);
     let raf: number;
     let webAudio = false;
     let playing = true;
-    let audioStarted = false;
 
     function animateAnalyser() {
         if (!analyser) return;
@@ -190,7 +189,8 @@ const bars = [...bands].reverse().concat(bands);
 
     function triggerClickBounce() {
         iconPlaying.classList.remove('click-bounce');
-        void (iconPlaying as Element).getBoundingClientRect(); // reflow to restart animation
+        // Force reflow so re-adding the class restarts the animation.
+        void iconPlaying.getBoundingClientRect();
         iconPlaying.classList.add('click-bounce');
         iconPlaying.addEventListener('animationend', () =>
             iconPlaying.classList.remove('click-bounce'), { once: true }
@@ -245,7 +245,7 @@ const bars = [...bands].reverse().concat(bands);
                 animateAnalyser();
             }
         } catch {
-            webAudio = false;
+            // Fall back to CSS-driven bars on Web Audio failure.
         }
     }
 
@@ -260,14 +260,11 @@ const bars = [...bands].reverse().concat(bands);
 
     async function startAudio() {
         if (!(await tryPlay())) return false;
-        audioStarted = true;
         setPlaying(true);
         await attachVisualizer();
         return true;
     }
 
-    // Pending action to run on the user's first interaction, if the radio
-    // isn't fully running with sound + analyser yet on load.
     let pendingFirstAction: (() => void | Promise<void>) | null = null;
 
     function consumePendingAction() {
@@ -300,7 +297,6 @@ const bars = [...bands].reverse().concat(bands);
     (async () => {
         // 1. Try plain autoplay first (works on revisits with browser engagement).
         if (await tryPlay()) {
-            audioStarted = true;
             setPlaying(true);
             // Web Audio needs a user gesture; defer the visualizer hookup.
             pendingFirstAction = () => { attachVisualizer(); };
@@ -309,7 +305,6 @@ const bars = [...bands].reverse().concat(bands);
         else {
             audio.muted = true;
             if (await tryPlay()) {
-                audioStarted = true;
                 setPlaying(true);
                 pendingFirstAction = async () => {
                     audio.muted = false;

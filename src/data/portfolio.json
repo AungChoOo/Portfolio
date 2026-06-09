@@ -37,22 +37,34 @@
     "description": "I grew up taking things apart to understand them. Now I build them from scratch. Embedded systems, robotics, AI — not as buzzwords, but as tools for making things that actually work in the real world. Still learning. Still building. Always curious."
   },
   "skills": [
-    { "name": "Embedded Programming (C, C++, Python, Verilog, VHDL)", "category": "skills" },
-    { "name": "Embedded Platform (Bare Metal, RTOS, FPGA)", "category": "skills" },
     {
-      "name": "Embedded Hardware Design (Schematics, PCB, Simulation)",
+      "name": "Embedded Programming",
+      "subskills": ["C", "C++", "Python", "Verilog", "VHDL"],
       "category": "skills"
     },
     {
-      "name": "Robotics (Simulation, Kinematics, Localization)",
+      "name": "Embedded Platform",
+      "subskills": ["Bare Metal", "RTOS", "FPGA"],
       "category": "skills"
     },
     {
-      "name": "Communication Protocols (I2C, SPI, UART, CAN, USB)",
+      "name": "Embedded Hardware Design",
+      "subskills": ["Schematics", "PCB", "Simulation"],
       "category": "skills"
     },
     {
-      "name": "Mechanical Design (3D printing, Laser Cutting, Sheet Metal)",
+      "name": "Robotics",
+      "subskills": ["Simulation", "Kinematics", "Localization"],
+      "category": "skills"
+    },
+    {
+      "name": "Communication Protocols",
+      "subskills": ["I2C", "SPI", "UART", "CAN", "USB"],
+      "category": "skills"
+    },
+    {
+      "name": "Mechanical Design",
+      "subskills": ["3D printing", "Laser Cutting", "Sheet Metal"],
       "category": "skills"
     },
     { "name": "KiCad", "category": "tools", "icon": "kicad" },
