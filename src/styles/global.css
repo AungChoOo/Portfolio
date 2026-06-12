@@ -5,20 +5,20 @@
 }
 
 :root {
-  /* ── Core palette — Dark · Gold · Ivory (previous palettes in Colors.md) ── */
-  --bg:           #0b0a08;   /* warm near-black */
-  --card-bg:      #181410;   /* warm dark surface */
-  --card-border:  #262017;   /* warm border */
-  --accent:       #d4af37;   /* gold */
-  --accent-hover: #c19a2e;   /* deeper gold */
-  --text:         #e6dcc3;   /* ivory */
-  --muted:        #8d8470;   /* muted warm gray */
+  /* ── Core palette — Midnight · Teal · Foam (previous palettes in Colors.md) ── */
+  --bg:           #0a0d0e;   /* slate black */
+  --card-bg:      #13181a;   /* slate card surface */
+  --card-border:  #1c2326;   /* slate border */
+  --accent:       #2dd4bf;   /* teal */
+  --accent-hover: #14b8a6;   /* deeper teal */
+  --text:         #c8d8d6;   /* foam */
+  --muted:        #7a8888;   /* muted slate */
 
   /* ── Derived shades ── */
-  --inner-bg:   #262017;   /* inner card bg */
-  --dim-border: #322a1e;   /* button border */
-  --very-dim:   #14100b;   /* dim icons */
-  --muted2:     #7d7460;   /* dimmer labels */
+  --inner-bg:   #1c2326;   /* inner card bg */
+  --dim-border: #232a2f;   /* slate button border */
+  --very-dim:   #0d1416;   /* slate icons */
+  --muted2:     #6a7a7f;   /* dimmer slate labels */
 }
 
 [x-cloak] { display: none !important; }

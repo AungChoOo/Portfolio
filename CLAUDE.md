@@ -25,7 +25,7 @@ Astro 5 static site + Tailwind CSS 4 (via `@tailwindcss/vite` plugin in `astro.c
 
 ## Styling & layout
 
-- Theme colors are CSS variables in `src/styles/global.css` ("Dark · Gold · Ivory"; previous palettes archived in `Colors.md`). Use `var(--accent)` etc., or Tailwind's `text-(--accent)` arrow syntax — don't hardcode hex values.
+- Theme colors are CSS variables in `src/styles/global.css` ("Midnight · Teal · Foam"; previous palettes archived in `Colors.md`). Use `var(--accent)` etc., or Tailwind's `text-(--accent)` arrow syntax — don't hardcode hex values.
 - The `lg` breakpoint is overridden to **960px** in `global.css` `@theme`.
 - Desktop grid is 4 cols × 6 rows, locked to viewport height (`lg:h-screen lg:overflow-hidden`); mobile is one column. Card spans are in card markup and documented in `LAYOUT.md` — check it before changing placement.
 - Static assets go in `public/` (e.g. `/images/...`). The top-level `images/` folder is NOT served.
