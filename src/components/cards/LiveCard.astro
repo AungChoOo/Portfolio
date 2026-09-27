@@ -2,21 +2,19 @@
 // No props — data fetched client-side
 ---
 
-<div class="bento-card col-span-1 lg:min-h-0 p-4 lg:p-[clamp(0.75rem,3cqw,1.25rem)] flex flex-col justify-between gap-2 lg:gap-[clamp(0.25rem,2cqw,0.75rem)] overflow-hidden" style="flex: 1">
-    <div class="flex items-center justify-between gap-2">
-        <p
-            class="text-sm lg:text-[clamp(0.65rem,2.8cqw,0.9rem)] text-(--accent) font-semibold uppercase tracking-wide whitespace-nowrap"
-        >
+<div class="bento-card col-span-1 lg:min-h-0 p-4 lg:p-[clamp(0.75rem,3cqw,1.25rem)] flex flex-col justify-between gap-2 lg:gap-[clamp(0.25rem,2cqw,0.75rem)] overflow-hidden lg:flex-1">
+    <div class="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
+        <h2 class="eyebrow text-xs lg:text-[clamp(0.6rem,0.9vw,0.8rem)] lg:tracking-[0.1em] whitespace-nowrap">
             Where I am
-        </p>
-        <p id="bkk-date" class="text-base lg:text-[clamp(0.65rem,2.8cqw,0.95rem)] uppercase tracking-wide whitespace-nowrap">---</p>
+        </h2>
+        <p id="bkk-date" class="text-sm lg:text-[clamp(0.65rem,0.95vw,0.85rem)] text-(--muted) font-medium whitespace-nowrap">---</p>
     </div>
 
-    <div class="flex items-center justify-between gap-2">
-        <p class="text-base lg:text-[clamp(0.8rem,4cqw,1.15rem)] text-white font-semibold whitespace-nowrap">Bangkok, TH</p>
+    <div class="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1">
+        <p class="text-base lg:text-[clamp(0.85rem,1.4vw,1.15rem)] text-(--heading) font-display font-semibold whitespace-nowrap">Bangkok, TH</p>
         <p
             id="bkk-time"
-            class="text-xl lg:text-[clamp(0.8rem,6cqw,1.5rem)] font-bold text-white tabular-nums leading-none whitespace-nowrap"
+            class="text-xl lg:text-[clamp(0.95rem,1.8vw,1.5rem)] font-semibold text-(--heading) tabular-nums leading-none whitespace-nowrap"
         >
             --:--:--
         </p>

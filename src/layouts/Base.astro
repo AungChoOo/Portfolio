@@ -1,8 +1,15 @@
 ---
 interface Props {
     title?: string;
+    description?: string;
 }
-const { title = "Aung Cho Oo — Portfolio" } = Astro.props;
+const {
+    title = "Aung Cho Oo — Robotics & Embedded Engineer",
+    description = "Robotics and embedded engineer in Bangkok with 5+ years and 50+ delivered projects: multi-layer PCB design, C/C++ firmware, and ROS/ROS2 robotics for clients worldwide.",
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL("/og-image.jpg", Astro.site);
 ---
 
 <!doctype html>
@@ -11,13 +18,37 @@ const { title = "Aung Cho Oo — Portfolio" } = Astro.props;
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="author" content="Aung Cho Oo" />
+        <meta name="theme-color" content="#0a0d0e" />
+        <link rel="canonical" href={canonical} />
+
+        <!-- Social previews (LinkedIn, Facebook, Slack, X, messaging apps) -->
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Aung Cho Oo" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Aung Cho Oo — Robotics & Embedded Engineer" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
+
         <link
             rel="icon"
             href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙</text></svg>"
         />
-        <style>
-            @import url("https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;600&family=Birthstone&family=Tangerine:wght@700&display=swap");
-        </style>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Inter:wght@400..700&family=JetBrains+Mono:wght@400..600&display=swap"
+        />
     </head>
     <body>
         <slot />

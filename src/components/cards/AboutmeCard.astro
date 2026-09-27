@@ -9,15 +9,22 @@ const { name, title, resumeUrl } = Astro.props;
 
 <div
     class="bento-card clickable col-span-1 lg:col-span-3 lg:row-span-3 min-h-[260px] lg:min-h-0 relative p-6 lg:p-[clamp(1rem,5cqh,2.5rem)] flex flex-col justify-start"
+    role="button"
+    tabindex="0"
+    aria-haspopup="dialog"
+    aria-label={`About ${name}`}
     @click="modal = 'about'"
+    @keydown.enter.self="modal = 'about'"
+    @keydown.space.self.prevent="modal = 'about'"
 >
     <div
         class="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none"
     >
         <img
-            src="/images/Robot.png"
+            src="/images/Robot.webp"
             alt=""
-            class="absolute right-0 bottom-0 w-60 h-75 object-cover opacity-[0.5] scale-110"
+            loading="lazy"
+            class="hidden lg:block absolute right-0 bottom-0 w-60 h-75 object-cover opacity-[0.5] scale-110"
             style="object-position: 0% center; transform: scaleX(-1)"
         />
         <div
@@ -27,13 +34,16 @@ const { name, title, resumeUrl } = Astro.props;
     </div>
 
     <div class="relative z-10 text-left flex-1 flex flex-col justify-center">
+        <p class="eyebrow text-xs lg:text-[clamp(0.65rem,1.8cqh,0.85rem)] mb-2 lg:mb-[clamp(0.25rem,1.5cqh,0.75rem)]">
+            Hello, I'm
+        </p>
         <h1
-            class="font-bold text-(--text) mb-2 leading-tight text-5xl lg:text-[clamp(2.5rem,18cqh,6rem)] lg:mb-[clamp(0.25rem,2cqh,1rem)]"
-            style="font-family: 'Birthstone', cursive"
+            class="font-semibold leading-[1.05] tracking-[-0.025em] mb-3 text-5xl lg:text-[clamp(2.5rem,13cqh,5.25rem)] lg:mb-[clamp(0.35rem,2cqh,1rem)]"
+            style="font-variation-settings: 'SOFT' 100, 'WONK' 1"
         >
             {name}
         </h1>
-        <p class="text-(--muted) -mb-4 lg:mb-0 text-lg lg:text-[clamp(0.9rem,3.5cqh,1.5rem)]">{title}</p>
+        <p class="text-(--muted) -mb-4 lg:mb-0 text-lg lg:text-[clamp(0.95rem,3.2cqh,1.4rem)] font-medium">{title}</p>
     </div>
 
     <div class="relative z-10 flex gap-3 flex-wrap justify-start">
@@ -41,9 +51,10 @@ const { name, title, resumeUrl } = Astro.props;
             href={resumeUrl}
             target="_blank"
             rel="noopener"
-            class="px-5 py-2.5 lg:px-[clamp(1rem,3cqw,1.75rem)] lg:py-[clamp(0.5rem,1.6cqh,0.9rem)] bg-(--accent) text-black text-sm lg:text-[clamp(0.8rem,2cqh,1.1rem)] font-semibold rounded-lg hover:bg-(--accent-hover) transition-colors inline-block"
+            @click.stop
+            class="px-5 py-2.5 lg:px-[clamp(1rem,3cqw,1.75rem)] lg:py-[clamp(0.5rem,1.6cqh,0.9rem)] bg-(--accent) text-(--bg) text-sm lg:text-[clamp(0.8rem,2cqh,1.05rem)] font-semibold tracking-[0.01em] rounded-lg hover:bg-(--accent-hover) transition-colors inline-block"
         >
-            View Resume
+            View Resume <span class="sr-only">(opens in a new tab)</span>
         </a>
     </div>
 </div>

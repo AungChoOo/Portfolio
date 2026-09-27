@@ -28,6 +28,32 @@ const toolItems = skills.filter((s) => s.category === "tools");
             email: '${personal.email}',
             phone: '${personal.phone}',
             toast: null,
+            lastFocus: null,
+            init() {
+                // Move focus into an opened modal, and back to the card that opened it on close
+                this.$watch('modal', (name) => {
+                    if (name) {
+                        this.lastFocus = document.activeElement;
+                        this.$nextTick(() => document.querySelector('[data-modal=' + name + '] [data-close]')?.focus());
+                    } else {
+                        this.lastFocus?.focus();
+                    }
+                });
+            },
+            trapFocus(event, dialog) {
+                const focusable = [...dialog.querySelectorAll('a[href], button, input, [tabindex]:not([tabindex="-1"])')]
+                    .filter((el) => el.offsetParent !== null);
+                if (!focusable.length) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first.focus();
+                }
+            },
             showToast(message) {
                 this.toast = message;
                 setTimeout(() => { this.toast = null; }, 2000);
@@ -73,36 +99,32 @@ const toolItems = skills.filter((s) => s.category === "tools");
             @click.self="modal = null"
             class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto"
         >
-            <Modal name="about">
-                <div class="flex items-start gap-4 md:gap-5 mb-6">
+            <Modal name="about" label={`About ${personal.name}`}>
+                <div class="flex items-center gap-4 md:gap-5 mb-6">
                     <img
-                        src="/images/Profile.png"
+                        src="/images/Profile.webp"
                         alt={personal.name}
                         class="w-16 md:w-20 h-16 md:h-20 rounded-xl object-cover flex-shrink-0 border"
                         style="object-position: center 10%; border-color: var(--card-bg)"
                     />
                     <div>
-                        <p
-                            class="text-[10px] text-(--accent) font-mono uppercase tracking-widest mb-1"
-                        >
-                            About
-                        </p>
-                        <h2 class="text-xl font-bold text-white">
+                        <p class="eyebrow text-[11px] mb-1.5">About</p>
+                        <h2 class="text-2xl md:text-[1.75rem] font-semibold leading-tight">
                             {personal.name}
                         </h2>
-                        <p class="text-(--muted) text-sm">
+                        <p class="text-(--muted) text-sm mt-0.5">
                             {personal.title}
                         </p>
                     </div>
                 </div>
-                <p class="text-(--muted) text-sm leading-relaxed mb-6">
+                <p class="text-(--text) text-[15px] leading-relaxed mb-6">
                     {about.description}
                 </p>
-                <div class="grid grid-cols-2 gap-3">
+                <div class="grid grid-cols-2 gap-3 mb-6">
                     <div
                         class="bg-(--inner-bg) border border-(--card-border) rounded-xl p-4 text-center"
                     >
-                        <p class="text-2xl font-bold text-(--accent)">5+</p>
+                        <p class="font-display text-3xl font-semibold text-(--accent) tabular-nums">5+</p>
                         <p class="text-xs text-(--muted) mt-1">
                             Years Experience
                         </p>
@@ -110,33 +132,32 @@ const toolItems = skills.filter((s) => s.category === "tools");
                     <div
                         class="bg-(--inner-bg) border border-(--card-border) rounded-xl p-4 text-center"
                     >
-                        <p class="text-2xl font-bold text-(--accent)">50+</p>
+                        <p class="font-display text-3xl font-semibold text-(--accent) tabular-nums">50+</p>
                         <p class="text-xs text-(--muted) mt-1">
-                            Projects Completed
+                            Projects Delivered
                         </p>
                     </div>
                 </div>
+                <p class="eyebrow text-[11px] mb-3">Fields of Interest</p>
+                <div class="flex flex-wrap gap-2">
+                    {about.interests.map((interest) => (
+                        <span class="tag">{interest}</span>
+                    ))}
+                </div>
             </Modal>
 
-            <Modal name="skills">
+            <Modal name="skills" eyebrow="Capabilities" heading="Skills & Tools">
                 <div class="space-y-4 mb-6">
-                    <div class="flex items-center gap-2">
-                        <Icon name="cpu" size={14} class="text-(--accent)" />
-                        <p
-                            class="text-xs text-(--muted2) uppercase tracking-wider"
-                        >
-                            Skills
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <h3 class="eyebrow text-[11px] text-(--muted)">Skills</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
                         {
                             skillItems.map((skill) => (
-                                <div class="text-sm">
-                                    <p class="text-(--text) font-medium">
+                                <div>
+                                    <p class="text-(--heading) text-sm font-semibold">
                                         {skill.name}
                                     </p>
                                     {skill.subskills && (
-                                        <p class="text-xs text-(--muted2) mt-1">
+                                        <p class="text-[13px] text-(--muted) leading-relaxed mt-0.5">
                                             {skill.subskills.join(", ")}
                                         </p>
                                     )}
@@ -149,72 +170,53 @@ const toolItems = skills.filter((s) => s.category === "tools");
                 <div class="h-px bg-gradient-to-r from-transparent via-(--card-border) to-transparent mb-6"></div>
 
                 <div class="space-y-4">
-                    <div class="flex items-center gap-2">
-                        <Icon name="wrench" size={14} class="text-(--accent)" />
-                        <p
-                            class="text-xs text-(--muted2) uppercase tracking-wider"
-                        >
-                            Tools
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
+                    <h3 class="eyebrow text-[11px] text-(--muted)">Tools</h3>
+                    <ul class="flex flex-wrap gap-2">
                         {
-                            toolItems.map((skill) =>
-                                skill.icon ? (
-                                    <div class="flex items-center gap-2 px-3 py-1.5 bg-(--inner-bg) border border-(--card-border) rounded-lg text-(--text) hover:border-(--accent) hover:text-(--accent) transition-colors">
-                                        <Icon name={skill.icon} size={14} />
-                                        <span class="text-sm">
-                                            {skill.name}
-                                        </span>
-                                    </div>
-                                ) : (
-                                    <span class="text-sm px-3 py-1.5 bg-(--inner-bg) border border-(--card-border) rounded-lg text-(--text)">
-                                        {skill.name}
-                                    </span>
-                                ),
-                            )
+                            toolItems.map((skill) => (
+                                <li class="flex items-center gap-2 px-3 py-1.5 bg-(--inner-bg) border border-(--card-border) rounded-lg text-(--text) hover:border-(--accent) hover:text-(--accent) transition-colors">
+                                    {skill.icon && <Icon name={skill.icon} size={14} />}
+                                    <span class="text-sm font-medium">{skill.name}</span>
+                                </li>
+                            ))
                         }
-                    </div>
+                    </ul>
                 </div>
             </Modal>
 
             <Modal name="experience" eyebrow="Experience" heading="Work Experience">
-                <div class="space-y-4">
+                <ol class="space-y-4">
                     {
                         experience.map((exp) => (
-                            <div class="bg-(--inner-bg) border border-(--card-border) rounded-xl p-4">
-                                <div class="flex items-start justify-between gap-2 mb-1">
-                                    <h3 class="text-white font-semibold text-sm">
+                            <li class="bg-(--inner-bg) border border-(--card-border) rounded-xl p-4 md:p-5">
+                                <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                                    <h3 class="text-lg font-semibold leading-snug">
                                         {exp.role}
                                     </h3>
-                                    <span class="text-xs text-(--muted2) flex-shrink-0">
+                                    <span class="font-mono text-xs text-(--muted2) tabular-nums flex-shrink-0">
                                         {exp.period}
                                     </span>
                                 </div>
-                                <div class="flex items-center gap-2 mb-2">
-                                    <p class="text-(--accent) text-xs">
-                                        {exp.company}
-                                    </p>
+                                <p class="text-sm mt-0.5 mb-3">
+                                    <span class="text-(--accent) font-medium">{exp.company}</span>
                                     {exp.location && (
-                                        <span class="text-(--muted2) text-xs">
-                                            · {exp.location}
-                                        </span>
+                                        <span class="text-(--muted2)"> · {exp.location}</span>
                                     )}
-                                </div>
-                                <ul class="space-y-1">
+                                </p>
+                                <ul class="space-y-1.5">
                                     {exp.description.map((point) => (
-                                        <li class="text-(--muted) text-xs leading-relaxed flex gap-2">
-                                            <span class="text-(--accent) flex-shrink-0">
-                                                ·
+                                        <li class="text-(--muted) text-[13px] md:text-sm leading-relaxed flex gap-2.5">
+                                            <span class="text-(--accent) flex-shrink-0" aria-hidden="true">
+                                                ▹
                                             </span>
                                             <span>{point}</span>
                                         </li>
                                     ))}
                                 </ul>
-                            </div>
+                            </li>
                         ))
                     }
-                </div>
+                </ol>
             </Modal>
 
             <Modal
@@ -225,7 +227,9 @@ const toolItems = skills.filter((s) => s.category === "tools");
             >
                 <div class="space-y-3 mb-6">
                     <button
+                        type="button"
                         @click.stop="navigator.clipboard.writeText(email); showToast('Copied email to clipboard')"
+                        aria-label={`Copy email address ${personal.email}`}
                         class="w-full flex items-center gap-3 p-3 bg-(--inner-bg) border border-(--card-border) rounded-xl hover:border-(--accent) transition-colors group cursor-pointer"
                     >
                         <div
@@ -239,20 +243,18 @@ const toolItems = skills.filter((s) => s.category === "tools");
                             />
                         </div>
                         <div class="text-left">
+                            <p class="eyebrow text-[10px] text-(--muted2)">Email</p>
                             <p
-                                class="text-[10px] text-(--muted2) uppercase tracking-wide"
-                            >
-                                Email
-                            </p>
-                            <p
-                                class="text-sm text-(--muted) group-hover:text-white transition-colors"
+                                class="text-sm text-(--text) group-hover:text-(--heading) transition-colors"
                             >
                                 {personal.email}
                             </p>
                         </div>
                     </button>
                     <button
+                        type="button"
                         @click.stop="navigator.clipboard.writeText(phone); showToast('Copied phone number to clipboard')"
+                        aria-label={`Copy phone number ${personal.phone}`}
                         class="w-full flex items-center gap-3 p-3 bg-(--inner-bg) border border-(--card-border) rounded-xl hover:border-(--accent) transition-colors group cursor-pointer"
                     >
                         <div
@@ -266,13 +268,9 @@ const toolItems = skills.filter((s) => s.category === "tools");
                             />
                         </div>
                         <div class="text-left">
+                            <p class="eyebrow text-[10px] text-(--muted2)">Phone</p>
                             <p
-                                class="text-[10px] text-(--muted2) uppercase tracking-wide"
-                            >
-                                Phone
-                            </p>
-                            <p
-                                class="text-sm text-(--muted) group-hover:text-white transition-colors"
+                                class="text-sm text-(--text) group-hover:text-(--heading) transition-colors tabular-nums"
                             >
                                 {personal.phone}
                             </p>
@@ -280,11 +278,7 @@ const toolItems = skills.filter((s) => s.category === "tools");
                     </button>
                 </div>
 
-                <p
-                    class="text-[10px] text-(--muted2) uppercase tracking-wider mb-3"
-                >
-                    Profiles
-                </p>
+                <h3 class="eyebrow text-[11px] text-(--muted) mb-3">Profiles</h3>
                 <div class="grid grid-cols-2 gap-2">
                     {
                         social.map((s) => (
@@ -292,12 +286,13 @@ const toolItems = skills.filter((s) => s.category === "tools");
                                 href={s.url}
                                 target="_blank"
                                 rel="noopener"
-                                class="flex items-center gap-2.5 p-3 bg-(--inner-bg) border border-(--card-border) rounded-xl hover:border-(--accent) hover:text-(--accent) text-(--muted) transition-colors"
+                                class="flex items-center gap-2.5 p-3 bg-(--inner-bg) border border-(--card-border) rounded-xl hover:border-(--accent) hover:text-(--accent) text-(--text) transition-colors"
                             >
                                 <Icon name={s.icon} size={15} />
                                 <span class="text-sm font-medium">
                                     {s.name}
                                 </span>
+                                <span class="sr-only">(opens in a new tab)</span>
                                 <Icon
                                     name="arrow-up-right"
                                     size={9}
@@ -316,23 +311,25 @@ const toolItems = skills.filter((s) => s.category === "tools");
                 eyebrow="Projects"
                 heading="Featured Projects"
             >
-                <div
+                <ul
                     class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[60vh] overflow-y-auto pr-1"
                 >
                     {
                         sortedProjects.map((project) => (
-                            <div class="bg-(--inner-bg) border border-(--card-border) rounded-xl overflow-hidden hover:border-(--dim-border) transition-colors">
+                            <li class="bg-(--inner-bg) border border-(--card-border) rounded-xl overflow-hidden hover:border-(--dim-border) transition-colors">
                                 <div class="relative" style="aspect-ratio: 16/7">
                                     <img
                                         src={project.data.image}
                                         alt={project.data.title}
-                                        class="w-full h-full object-cover opacity-70"
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="w-full h-full object-cover opacity-80"
                                     />
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                                 </div>
                                 <div class="p-4">
-                                    <div class="flex items-start justify-between gap-2 mb-2">
-                                        <h3 class="text-white font-semibold text-sm">
+                                    <div class="flex items-start justify-between gap-2 mb-1.5">
+                                        <h3 class="text-lg font-semibold leading-snug">
                                             {project.data.title}
                                         </h3>
                                         {project.data.repo && (
@@ -340,32 +337,35 @@ const toolItems = skills.filter((s) => s.category === "tools");
                                                 href={project.data.repo}
                                                 target="_blank"
                                                 rel="noopener"
-                                                class="flex-shrink-0 text-(--muted2) hover:text-(--accent) transition-colors"
+                                                class="flex-shrink-0 mt-1 text-(--muted2) hover:text-(--accent) transition-colors"
                                                 title="View on GitHub"
+                                                aria-label={`${project.data.title} on GitHub (opens in a new tab)`}
                                             >
-                                                <Icon name="github" size={14} />
+                                                <Icon name="github" size={15} />
                                             </a>
                                         )}
                                     </div>
-                                    <p class="text-(--muted) text-xs leading-relaxed mb-3">
+                                    <p class="text-(--muted) text-[13px] leading-relaxed mb-3">
                                         {project.data.description}
                                     </p>
-                                    <div class="flex flex-wrap gap-1">
+                                    <div class="flex flex-wrap gap-1.5">
                                         {project.data.tags.map((tag) => (
                                             <span class="tag">{tag}</span>
                                         ))}
                                     </div>
                                 </div>
-                            </div>
+                            </li>
                         ))
                     }
-                </div>
+                </ul>
             </Modal>
 
             <div
                 x-show="toast !== null"
                 x-transition
-                class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-(--accent) text-black px-6 py-3 rounded-lg font-semibold text-sm shadow-lg"
+                role="status"
+                aria-live="polite"
+                class="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-(--accent) text-(--bg) px-6 py-3 rounded-lg font-semibold text-sm shadow-lg"
             >
                 <span x-text="toast"></span>
             </div>

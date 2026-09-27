@@ -1,12 +1,18 @@
 <div
-    class="bento-card clickable col-span-1 lg:min-h-0 flex flex-col items-center justify-center overflow-hidden"
-    style="flex: 1.5; background: linear-gradient(135deg, var(--card-bg), color-mix(in srgb, var(--accent) 15%, var(--card-bg)))"
+    class="bento-card clickable col-span-1 lg:min-h-0 lg:flex-[1.5] py-8 lg:py-0 flex flex-col items-center justify-center overflow-hidden"
+    style="background: linear-gradient(135deg, var(--card-bg), color-mix(in srgb, var(--accent) 15%, var(--card-bg)))"
+    role="button"
+    tabindex="0"
+    aria-haspopup="dialog"
+    aria-label="Open work experience"
     @click="modal = 'experience'"
+    @keydown.enter.self="modal = 'experience'"
+    @keydown.space.self.prevent="modal = 'experience'"
 >
     <p
-        class="font-bold text-(--accent) text-6xl lg:text-[clamp(1.75rem,14cqw,3.25rem)] leading-none whitespace-nowrap"
-        style="font-family: 'Tangerine', cursive"
+        class="font-display italic font-medium text-(--accent) text-4xl lg:text-[clamp(1.5rem,11cqw,2.4rem)] leading-none whitespace-nowrap tracking-[-0.01em]"
+        style="font-variation-settings: 'SOFT' 100, 'WONK' 1"
     >
-        Experiences
+        Experience
     </p>
 </div>

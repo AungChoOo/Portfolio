@@ -16,10 +16,16 @@ const { email, phone, social } = Astro.props;
 
 <div
     class="bento-card clickable col-span-1 lg:row-span-2 lg:min-h-0 p-6 lg:p-[clamp(0.75rem,2vh,1.5rem)] flex flex-col justify-center gap-3 lg:gap-[clamp(0.5rem,1.4vh,1rem)] min-h-[200px]"
+    role="button"
+    tabindex="0"
+    aria-haspopup="dialog"
+    aria-label="Open contact details"
     @click="modal = 'contact'"
+    @keydown.enter.self="modal = 'contact'"
+    @keydown.space.self.prevent="modal = 'contact'"
 >
     <div class="flex items-center justify-between">
-        <p class="text-sm lg:text-[clamp(0.7rem,3cqh,1rem)] text-(--accent) font-semibold uppercase tracking-wide">Get in touch</p>
+        <h2 class="eyebrow text-xs lg:text-[clamp(0.65rem,1.8cqh,0.85rem)]">Get in touch</h2>
         <Icon name="arrow-up-right" size={11} strokeWidth={2.5} class="text-(--very-dim)" />
     </div>
 
@@ -30,7 +36,7 @@ const { email, phone, social } = Astro.props;
             >
                 <Icon name="mail" size={12} strokeWidth={2} class="text-(--muted2)" />
             </div>
-            <span class="text-xs lg:text-[clamp(0.7rem,2.6cqh,0.95rem)] text-(--muted) truncate">{email}</span>
+            <span class="text-xs lg:text-[clamp(0.7rem,2.6cqh,0.95rem)] text-(--text) truncate">{email}</span>
         </div>
 
         <div class="flex items-center gap-2.5">
@@ -39,7 +45,7 @@ const { email, phone, social } = Astro.props;
             >
                 <Icon name="phone" size={12} strokeWidth={2} class="text-(--muted2)" />
             </div>
-            <span class="text-xs lg:text-[clamp(0.7rem,2.6cqh,0.95rem)] text-(--muted2)">{phone}</span>
+            <span class="text-xs lg:text-[clamp(0.7rem,2.6cqh,0.95rem)] text-(--text) tabular-nums">{phone}</span>
         </div>
     </div>
 
@@ -53,6 +59,7 @@ const { email, phone, social } = Astro.props;
                     target="_blank"
                     rel="noopener"
                     title={s.name}
+                    aria-label={`${s.name} (opens in a new tab)`}
                     class="w-8 h-8 rounded-lg bg-(--inner-bg) border border-(--card-border) flex items-center justify-center text-(--muted) hover:border-(--accent) hover:text-(--accent) transition-colors"
                     @click.stop
                 >
