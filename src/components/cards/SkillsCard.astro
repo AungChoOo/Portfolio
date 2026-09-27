@@ -31,7 +31,7 @@ const brandColors: Record<string, string> = {
 ---
 
 <div
-    class="bento-card clickable col-span-1 lg:col-span-2 lg:row-span-3 lg:min-h-0 p-6 lg:p-[clamp(1rem,3cqh,1.75rem)] flex flex-col justify-between gap-2 lg:gap-[clamp(0.35rem,1.2cqh,0.75rem)] overflow-hidden"
+    class="bento-card clickable col-span-1 lg:col-span-2 lg:row-span-3 lg:min-h-0 p-6 lg:px-[clamp(1rem,2.4cqh,1.75rem)] lg:py-[clamp(0.6rem,2cqh,1.5rem)] flex flex-col justify-between gap-2 lg:gap-[clamp(0.35rem,1.6cqh,1.25rem)] overflow-hidden"
     role="button"
     tabindex="0"
     aria-haspopup="dialog"
@@ -40,17 +40,21 @@ const brandColors: Record<string, string> = {
     @keydown.enter.self="modal = 'skills'"
     @keydown.space.self.prevent="modal = 'skills'"
 >
-    <div class="space-y-3 lg:space-y-[clamp(0.5rem,1.6cqh,1rem)]">
-        <h2 class="eyebrow text-xs lg:text-[clamp(0.65rem,1.8cqh,0.85rem)]">What I can do</h2>
-        <div class="grid grid-cols-2 gap-x-4 gap-y-3 lg:gap-x-5 lg:gap-y-[clamp(0.3rem,1.1cqh,0.75rem)]">
+    <div class="space-y-3 lg:space-y-0 lg:flex-1 lg:min-h-0 lg:flex lg:flex-col lg:gap-[clamp(0.35rem,1.3cqh,1rem)]">
+        <h2 class="card-heading text-base lg:text-[clamp(0.85rem,2.2cqh,1.2rem)] leading-tight">What I can do</h2>
+        <!-- On desktop, the font size is fitted by the script below so the list fills the space exactly -->
+        <div
+            data-skill-grid
+            class="grid grid-cols-2 gap-x-4 gap-y-3 lg:text-[clamp(0.7rem,1.55cqh,0.95rem)] lg:gap-x-[1.5em] lg:gap-y-[0.85em] lg:flex-1 lg:min-h-0 lg:content-between"
+        >
             {
                 skillItems.map((skill) => (
                     <div class="group cursor-default hover:opacity-100 opacity-90 transition-opacity">
-                        <p class="text-[15px] lg:text-[clamp(0.78rem,1.8cqh,1rem)] text-(--heading) font-semibold leading-snug lg:truncate">
+                        <p class="text-[15px] lg:text-[1.14em] text-(--heading) font-semibold leading-snug">
                             {skill.name}
                         </p>
                         {skill.subskills && (
-                            <p class="text-sm lg:text-[clamp(0.7rem,1.55cqh,0.9rem)] text-(--muted) mt-0.5 leading-snug lg:truncate">
+                            <p class="text-sm lg:text-[1em] text-(--muted) mt-0.5 lg:mt-[0.2em] leading-snug lg:leading-[1.5]">
                                 {skill.subskills.join(", ")}
                             </p>
                         )}
@@ -62,18 +66,18 @@ const brandColors: Record<string, string> = {
 
     <div class="h-px bg-gradient-to-r from-transparent via-(--card-border) to-transparent" />
 
-    <div class="space-y-2 lg:space-y-[clamp(0.35rem,1.1cqh,0.7rem)]">
-        <h2 class="eyebrow text-xs lg:text-[clamp(0.65rem,1.8cqh,0.85rem)]">What I use</h2>
+    <div class="space-y-2 lg:space-y-[clamp(0.25rem,0.9cqh,0.7rem)]">
+        <h2 class="card-heading text-base lg:text-[clamp(0.85rem,2.2cqh,1.2rem)] leading-tight">What I use</h2>
 
-        <div class="marquee-wrap overflow-hidden -mx-6 px-0 mt-2">
+        <div class="marquee-wrap overflow-hidden -mx-6 lg:-mx-[clamp(1rem,2.4cqh,1.75rem)] px-0 mt-2 lg:mt-0">
             <div
-                class="marquee-track flex gap-6 px-6"
+                class="marquee-track flex gap-6 px-6 lg:px-[clamp(1rem,2.4cqh,1.75rem)]"
                 style="width: max-content"
             >
                 {
                     marqueeIcons.map((skill, i) => (
                         <div
-                            class={`tool-icon group flex-shrink-0 h-11 rounded-xl bg-(--inner-bg) flex items-center justify-center text-(--muted) transition-all duration-150 cursor-default hover:scale-110 ${skill.icon === 'kicad' ? 'w-22 px-3' : 'w-11'}`}
+                            class={`tool-icon group flex-shrink-0 h-11 lg:h-[clamp(1.75rem,4.5cqh,2.75rem)] rounded-xl bg-(--inner-bg) flex items-center justify-center text-(--muted) transition-all duration-150 cursor-default hover:scale-110 ${skill.icon === 'kicad' ? 'w-22 px-3' : 'w-11 lg:w-[clamp(1.75rem,4.5cqh,2.75rem)]'}`}
                             title={skill.name}
                             data-color={
                                 skill.icon
@@ -134,6 +138,36 @@ const brandColors: Record<string, string> = {
 </style>
 
 <script>
+    // Fit the skill list to its box on desktop: binary-search the largest font size
+    // (px) whose content still fits, so there is neither overflow nor blank space.
+    const skillGrid = document.querySelector<HTMLElement>("[data-skill-grid]");
+    const desktop = window.matchMedia("(min-width: 960px)");
+    const MIN_PX = 10;
+    const MAX_PX = 17;
+
+    function fitSkills() {
+        if (!skillGrid) return;
+        if (!desktop.matches) {
+            skillGrid.style.fontSize = "";
+            return;
+        }
+        let lo = MIN_PX;
+        let hi = MAX_PX;
+        for (let i = 0; i < 10; i++) {
+            const mid = (lo + hi) / 2;
+            skillGrid.style.fontSize = `${mid}px`;
+            if (skillGrid.scrollHeight <= skillGrid.clientHeight + 1) lo = mid;
+            else hi = mid;
+        }
+        skillGrid.style.fontSize = `${lo}px`;
+    }
+
+    if (skillGrid) {
+        new ResizeObserver(fitSkills).observe(skillGrid.parentElement!);
+        document.fonts.ready.then(fitSkills);
+        desktop.addEventListener("change", fitSkills);
+    }
+
     const accentColor = getComputedStyle(document.documentElement)
         .getPropertyValue("--accent")
         .trim();
