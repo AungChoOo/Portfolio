@@ -88,10 +88,23 @@
   ],
   "experience": [
     {
+      "company": "ROM Dynamics",
+      "role": "Hardware Design Engineer (Part-Time)",
+      "location": "Remote",
+      "period": "2024 – Present",
+      "description": [
+        "Design custom STM32-based robot controller PCBs for ROS mobile robots.",
+        "Select components based on requirements, availability and cost.",
+        "Draw schematics and lay out PCBs.",
+        "Bring up, test and rework physical boards.",
+        "Prepare design and manufacturing documentation (BOM, Gerber, assembly drawings)."
+      ]
+    },
+    {
       "company": "Upwork & Direct Clients",
       "role": "Freelancer",
       "location": "Remote",
-      "period": "2020 – Current",
+      "period": "2021 – Current",
       "description": [
         "Turn client requirements into complete hardware and firmware solutions for companies worldwide, from first schematic to production-ready design files.",
         "Design multi-layer PCBs (up to 6 layers) in KiCad and Altium, including a system on module carrier board, a wearable location tracker with Wi-Fi, BLE, 4G LTE and GNSS, and a buck-boost switching regulator.",
@@ -113,10 +126,10 @@
       ]
     },
     {
-      "company": "Robotics of Myanmar (ROM)",
+      "company": "ROM Dynamics",
       "role": "Robotic Developer",
       "location": "Yangon, Myanmar",
-      "period": "2019 – 2022",
+      "period": "2019 – 2021",
       "description": [
         "Developed and tested autonomous indoor navigation robots using the Slamware SDK for localization and mapping.",
         "Designed robot structures in SolidWorks and built prototypes with CNC machining and 3D printing.",
